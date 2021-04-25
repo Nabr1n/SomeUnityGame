@@ -9,6 +9,8 @@ public class UnderWaterTest : MonoBehaviour
     //Define variable
     public int underwaterLevel = 7;
 
+    public Texture2D fogGradient;
+
     //The scene's default fog settings
     private bool defaultFog;
     private Color defaultFogColor;
@@ -28,8 +30,8 @@ public class UnderWaterTest : MonoBehaviour
 
     }
 
-    void Update()
-    {
+
+    private void OldFogSettings(){
         if (transform.position.y < underwaterLevel)
         {
             RenderSettings.fog = true;
@@ -44,5 +46,15 @@ public class UnderWaterTest : MonoBehaviour
             RenderSettings.fogDensity = defaultFogDensity;
             RenderSettings.skybox = defaultSkybox;
         }
+    }
+
+
+    void Update()
+    {
+        RenderSettings.fog = true;
+        //RenderSettings.fogColor = new Color(0, 0.4f, 0.7f, 0.6f);
+        RenderSettings.fogColor = fogGradient.GetPixel(underwaterLevel, 1);
+        RenderSettings.fogDensity = 0.04f * underwaterLevel;
+        RenderSettings.skybox = noSkybox;
     }
 }

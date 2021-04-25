@@ -306,7 +306,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxCameraStepOffset: 1
+  maxCameraStepOffset: 0.3
   gravity: -9.81
   groundCheck: {fileID: 5227093418838423440}
   groundDistance: 0.4
