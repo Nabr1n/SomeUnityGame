@@ -10,7 +10,11 @@ public class FloorScript : MonoBehaviour
     public GameObject WallLeft;
     public GameObject WallBottom;
 
-    public bool MazeExit;
+    [SerializeField] private GameObject[] Floors;
+    [SerializeField] private Transform floortransform;
+
+
+    [HideInInspector] public bool MazeExit;
 
     public void SetRoad(bool IsMainRoad){
         AmIMainRoad = IsMainRoad;
@@ -19,9 +23,15 @@ public class FloorScript : MonoBehaviour
     }
     
 
+    private void PickRandomFloor(){
+        int Rand = Random.Range(0, Floors.Length-1);
+        Instantiate(Floors[Rand], floortransform);
+    }
+
+
     void Start()
     {
-        
+        PickRandomFloor();
     }
 
     // Update is called once per frame

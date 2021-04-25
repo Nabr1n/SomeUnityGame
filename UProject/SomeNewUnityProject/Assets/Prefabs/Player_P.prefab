@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   underwaterLevel: 7
+  fogGradient: {fileID: 0}
 --- !u!1 &4635804853331581830
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +200,7 @@ GameObject:
   - component: {fileID: 9185485419090813568}
   - component: {fileID: 6737375250189325066}
   - component: {fileID: 1956834763943619951}
+  - component: {fileID: 5033357862206116804}
   m_Layer: 0
   m_Name: Player_P
   m_TagString: Untagged
@@ -313,6 +315,18 @@ MonoBehaviour:
   GroundMask:
     serializedVersion: 2
     m_Bits: 256
+--- !u!114 &5033357862206116804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5367275792611002635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a7c2c3b8ec7e8458d4a73542101723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6041874049276582633
 GameObject:
   m_ObjectHideFlags: 0
