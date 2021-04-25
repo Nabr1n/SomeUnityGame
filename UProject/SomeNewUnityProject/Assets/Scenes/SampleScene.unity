@@ -208,7 +208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544914662}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 4, z: 0}
+  m_LocalPosition: {x: -8.8, y: 4, z: 1.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -532,9 +532,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Floor: {fileID: 2634938038190435234, guid: 878f09a888383794ebf8b32bdf824211, type: 3}
   Wall: {fileID: 0}
-  tileSize: 1
+  tileSize: 0.5
   gridLength: 20
-  gridWidth: 10
+  gridWidth: 20
+  ShoudGenerateInstantly: 0
 --- !u!224 &1291536692
 RectTransform:
   m_ObjectHideFlags: 0

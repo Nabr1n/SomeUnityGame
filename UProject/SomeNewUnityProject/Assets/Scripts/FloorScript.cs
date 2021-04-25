@@ -7,7 +7,8 @@ public class FloorScript : MonoBehaviour
     // Start is called before the first frame update
     [HideInInspector] public bool AmIMainRoad;
    [SerializeField] GameObject myPlane;
-
+    public GameObject WallLeft;
+    public GameObject WallBottom;
 
     public void SetRoad(bool IsMainRoad){
         AmIMainRoad = IsMainRoad;
