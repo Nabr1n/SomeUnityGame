@@ -20,6 +20,7 @@ public class MazeSpawner : MonoBehaviour
             for (int l = 0; l < maze.GetLength(1); l++)
             {
                 FloorScript F = Instantiate(CellPrefab, new Vector3(w*10,0,l*10),Quaternion.identity).GetComponent<FloorScript>();
+                if(w==0&&l==0) GameObject.FindWithTag("Player").transform.position = F.transform.position;
                 F.WallLeft.SetActive(maze[w,l].WallLeft);
                 F.WallBottom.SetActive(maze[w,l].WallBottom);
                 F.MazeExit = maze[w,l].MazeExit;
