@@ -14,6 +14,8 @@ public class MazeGeneratorCell
     public int DistanceFromStart;
 
     public bool Visited = false;
+
+    public bool MazeExit = false;
     public MazeGeneratorCell(int x, int y){
         X = x;
         Y = y;
@@ -49,7 +51,7 @@ public class MazeGenerator
 
         
         RemoveWallsWithBackTracker (maze);
-
+        PlaceMazeExit(maze);
 
         return maze;
     }
@@ -106,4 +108,23 @@ public class MazeGenerator
             else chozen.WallLeft = false;
         }
     }
+
+    private void PlaceMazeExit(MazeGeneratorCell[,] maze){
+        MazeGeneratorCell furthest = maze[0,0];
+
+        for (int x = 0; x < maze.GetLength(0); x++){
+            if(maze[x,Width-2].DistanceFromStart > furthest.DistanceFromStart) furthest = maze [x, Width -2];
+            if(maze[x,0].DistanceFromStart > furthest.DistanceFromStart) furthest = maze [x, 0];
+        }
+
+        for (int y = 0; y < maze.GetLength (1); y++){
+            if(maze[Width-2, y].DistanceFromStart > furthest.DistanceFromStart) furthest = maze [Width - 2, y];
+            if(maze[0, y].DistanceFromStart > furthest.DistanceFromStart) furthest = maze [0, y];
+        }
+
+        furthest.MazeExit = true;
+
+    }
+
+
 }

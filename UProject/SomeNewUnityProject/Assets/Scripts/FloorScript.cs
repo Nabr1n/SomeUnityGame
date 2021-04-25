@@ -10,6 +10,8 @@ public class FloorScript : MonoBehaviour
     public GameObject WallLeft;
     public GameObject WallBottom;
 
+    public bool MazeExit;
+
     public void SetRoad(bool IsMainRoad){
         AmIMainRoad = IsMainRoad;
         if(AmIMainRoad)
@@ -25,6 +27,6 @@ public class FloorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (MazeExit) myPlane.GetComponent<MeshRenderer>().material.color = Color.red;
     }
 }

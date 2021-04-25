@@ -4,51 +4,115 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Camera myCamera;
+    
     [SerializeField] private CharacterController myController;
-    [SerializeField] private Rigidbody myRigid;
-    [SerializeField] private float speed;
-    [SerializeField] private float CameraSensitivity;
+    [SerializeField] private Camera myCamera;
+    [SerializeField] private Transform CameraOrigin;
     
     
+    [SerializeField] private float MaxForwardSpeed, MaxRightSpeed;
+    [SerializeField] private float Acceleration;
     
-    private void Move(float axis, Vector3 WorldDir){
-        if (axis >= 0.1f || axis <= -0.1f){
-           var position = transform.position +  WorldDir*axis*speed*Time.deltaTime;
-            myController.SimpleMove(WorldDir*axis*speed*Time.deltaTime);
-            
-        }
-        
-    }
+    [SerializeField] private float StepLength;
+    [SerializeField] private AnimationCurve CameraStepMovement;
+    [SerializeField] private float maxCameraStepOffset;
     
-    private void CameraRotation(){
-        float Pitch = Input.GetAxis("Mouse X");
-        float Yaw = Input.GetAxis("Mouse Y");
+    private float forwardSpeed;
+    private float rightSpeed;
+    
+    private Vector3 lastStepPlace;
+    private float currentStepDistance;
 
-        transform.Rotate(Vector3.up * Pitch);
-        //transform.Rotate(new Vector3 (0, Pitch*Time.deltaTime*CameraSensitivity, 0), Space.Self);
-        //transform.Rotate(Vector3.up, Pitch*Time.deltaTime*CameraSensitivity);
-        //Debug.Log(Pitch + " " + Yaw);
-    }
 
+
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundDistance = 0.4f;
+
+    [SerializeField] private LayerMask GroundMask;
+    
+    
+    
+
+    Vector3 velocity;
+    bool isGrounded;
+    
+    
+    
+    
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        lastStepPlace = transform.position;
+    }
+
+    private void MakeSpeed(float forwardAxis, float rightAxis){
+        //  Debug.Log (forwardAxis + " " +rightAxis);
+        if (forwardAxis > 0f || forwardAxis < 0f) {
+            forwardSpeed += Acceleration * Time.deltaTime;
+            forwardSpeed = Mathf.Clamp (forwardSpeed, 0f, MaxForwardSpeed);
+        }
+        else if (forwardAxis == 0f) {
+            forwardSpeed = 0f;
+        }
+
+        if (rightAxis > 0f || rightAxis < 0f)
+        {
+            rightSpeed+=Acceleration * Time.deltaTime;
+            rightSpeed = Mathf.Clamp (rightSpeed+Acceleration, 0f, MaxRightSpeed);
+
+        }
+        else if (rightSpeed == 0f)
+        {
+             rightSpeed = 0f;
+        }
+       
+    }
+
+
+    private void CheckStep(Vector3 move){
+        float StepAlpha;
         
+        
+        currentStepDistance += Vector3.Distance(move , new Vector3(0,0,0))*Time.deltaTime;
+        StepAlpha = currentStepDistance/StepLength;
+
+        CameraOrigin.localPosition = new Vector3(0, CameraStepMovement.Evaluate(StepAlpha)*maxCameraStepOffset, 0);
+
+        if (currentStepDistance >= StepLength) Step();
+    }
+
+
+    private void Step(){
+        currentStepDistance = 0;
+        Debug.Log("STEP!");
+        StartCoroutine(myCamera.GetComponent<CameraShake>().Shake(0.1f, 0.1f));
     }
 
     // Update is called once per frame
     void Update()
     {
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, GroundMask);
+        if (isGrounded && velocity.y < 0) velocity.y = -2f;
+
+
         float forwardspeed = Input.GetAxis("Vertical");
         float rightspeed = Input.GetAxis("Horizontal");
 
-
-
-        Move (forwardspeed, transform.forward);
-        Move (rightspeed, transform.right);
         
-        CameraRotation();
+        
+        MakeSpeed(forwardspeed, rightspeed);
+        Vector3 move = transform.right * rightspeed * rightSpeed + transform.forward*forwardspeed * forwardSpeed;
+        CheckStep(move);
+        
+
+        myController.Move(move * Time.deltaTime);
+
+        velocity.y += gravity * Time.deltaTime; 
+
+        
+        myController.Move(velocity * Time.deltaTime);
     }
 }

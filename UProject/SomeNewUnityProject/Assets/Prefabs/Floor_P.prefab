@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &6677250819765533890
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2307182325192018391}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.197989, y: 6.0205765, z: 1.6209729}
+  m_Center: {x: -0.040463015, y: 3.0052757, z: -0.000000024835268}
 --- !u!1 &2634938038190435234
 GameObject:
   m_ObjectHideFlags: 0
@@ -50,6 +63,7 @@ MonoBehaviour:
   myPlane: {fileID: 3327823258852445574}
   WallLeft: {fileID: 6376239879377844874}
   WallBottom: {fileID: 2307182325192018391}
+  MazeExit: 0
 --- !u!1 &3327823258852445574
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +76,7 @@ GameObject:
   - component: {fileID: 4573616910517631181}
   - component: {fileID: 7448890338776134651}
   - component: {fileID: 7787923426209732423}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,6 +158,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &6397637640549931460
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6376239879377844874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.170712, y: 6.0702305, z: 1.9391371}
+  m_Center: {x: 0.035356846, y: 2.9948776, z: 0.045945242}
 --- !u!1001 &3226173584253416582
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -225,6 +252,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BottomWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 61ece0f12c135e04f867166599d9ce43,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0400716
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 61ece0f12c135e04f867166599d9ce43,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 61ece0f12c135e04f867166599d9ce43,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.007
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 61ece0f12c135e04f867166599d9ce43,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61ece0f12c135e04f867166599d9ce43, type: 3}
@@ -321,6 +368,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeftWall
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 61ece0f12c135e04f867166599d9ce43,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0353572
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 61ece0f12c135e04f867166599d9ce43,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 1151388028547126963, guid: 61ece0f12c135e04f867166599d9ce43,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61ece0f12c135e04f867166599d9ce43, type: 3}
