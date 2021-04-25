@@ -5,6 +5,7 @@ using UnityEngine;
 public class MazeSpawner : MonoBehaviour
 {
     [SerializeField] GameObject CellPrefab;
+    [SerializeField] float CellSize;
     private MazeGeneratorCell[,] maze;
 
     void Start()
@@ -19,7 +20,8 @@ public class MazeSpawner : MonoBehaviour
         {
             for (int l = 0; l < maze.GetLength(1); l++)
             {
-                FloorScript F = Instantiate(CellPrefab, new Vector3(w*10,0,l*10),Quaternion.identity).GetComponent<FloorScript>();
+                FloorScript F = Instantiate(CellPrefab, new Vector3(w*10*CellSize,0,l*10*CellSize),Quaternion.identity).GetComponent<FloorScript>();
+                F.transform.localScale = new Vector3 (CellSize, CellSize, CellSize);
                 if(w==0&&l==0) GameObject.FindWithTag("Player").transform.position = F.transform.position;
                 F.WallLeft.SetActive(maze[w,l].WallLeft);
                 F.WallBottom.SetActive(maze[w,l].WallBottom);

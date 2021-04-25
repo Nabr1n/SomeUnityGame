@@ -152,6 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CellPrefab: {fileID: 2634938038190435234, guid: 878f09a888383794ebf8b32bdf824211,
     type: 3}
+  CellSize: 0.4
 --- !u!4 &76921393
 Transform:
   m_ObjectHideFlags: 0
@@ -337,24 +338,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 21543d2b66928224f8a9536ff3811682, type: 3}
---- !u!1 &588588329 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100002, guid: 21543d2b66928224f8a9536ff3811682,
-    type: 3}
-  m_PrefabInstance: {fileID: 588588328}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &588588330
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588588329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcf3d2774f0767f4c8a8a2c1b0082f77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &882178809
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +531,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1956834763943619951, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: StepLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956834763943619951, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: Acceleration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956834763943619951, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: MaxRightSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956834763943619951, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: MaxForwardSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1956834763943619951, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: maxCameraStepOffset
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2641020785533103678, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: fogGradient
+      value: 
+      objectReference: {fileID: 2800000, guid: a92803bcd584ab54ca0af75fc01efe93, type: 3}
     - target: {fileID: 4831494056923584077, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: m_RootOrder
