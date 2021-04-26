@@ -102,7 +102,7 @@ public class MazeGenerator
                 //     current.ShouldBeWithBlob = true;
                 //     LastMoveWasTrue = false;
                 // }
-                Debug.Log(stack.Count);
+                //Debug.Log(stack.Count);
                 current = stack.Pop();
             }
 
