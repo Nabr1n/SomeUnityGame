@@ -25,7 +25,7 @@ public class ColorBubbleUIScript : MonoBehaviour
         {   
             
             if(!found){
-                if(InventoryRef.Inventory[i].Object.MyColorName == myBlob.MyColorName ){
+                if(InventoryRef.Inventory[i].Object.MyColorName == myBlob.MyColorName && InventoryRef.Inventory[i].Count > 0){
                     //Debug.Log("found");
                     found = true;
                     //Debug.Log( myBlob.MyColorName + "Exists");

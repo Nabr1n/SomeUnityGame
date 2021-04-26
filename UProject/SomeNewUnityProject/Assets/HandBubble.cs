@@ -28,12 +28,25 @@ public class HandBubble : MonoBehaviour
     {
         switch (mySide){
             case ("Left"):
-            CurrentBlob = myInv.Inventory[myInv.leftArmObj].Object;
+            if(myInv.leftArmObj!=-1) {
+                CurrentBlob = myInv.Inventory[myInv.leftArmObj].Object;
+                myRend.enabled = true;
+            }
+            else {
+                myRend.enabled = false;
+            }
             
             break;
 
             case "Right":
-            CurrentBlob = myInv.Inventory[myInv.RightArmObj].Object;
+             if(myInv.leftArmObj!=-1) {
+                CurrentBlob = myInv.Inventory[myInv.RightArmObj].Object;
+                myRend.enabled = true;
+             }
+             else{
+                 myRend.enabled = false;
+             }
+
             break;
         }
         

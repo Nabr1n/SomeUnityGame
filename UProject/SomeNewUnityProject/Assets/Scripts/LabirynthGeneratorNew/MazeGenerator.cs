@@ -11,6 +11,11 @@ public class MazeGeneratorCell
     public bool WallLeft = true;
     public bool WallBottom = true;
 
+    public bool BarrierRight = false;
+    public bool BarrierLeft = false;
+
+    public string BarrierLeftObj;
+    public string BarrierRightObj;
     public int DistanceFromStart;
 
     public bool Visited = false;
@@ -19,7 +24,7 @@ public class MazeGeneratorCell
 
     public bool ShouldBeWithBlob = false;
     
-    public void RandomBlob() {
+    public string RandomBlob() {
        int Rand = UnityEngine.Random.Range(0,3);
        switch (Rand){
            case 0:
@@ -34,8 +39,9 @@ public class MazeGeneratorCell
            case 3:
            BlobType = "Blue";
            break;
-
+        
        }
+       return BlobType;
     }
 
     public string BlobType = "Null";
@@ -93,6 +99,8 @@ public class MazeGenerator
         current.Visited = true;
 
         Stack<MazeGeneratorCell> stack = new Stack<MazeGeneratorCell>();
+        List<MazeGeneratorCell> CellsWithBlobs = new List<MazeGeneratorCell>();
+        List<string> Barriers = new List<string>();
         do
         {
             List<MazeGeneratorCell> unvisitedNeighbours = new List<MazeGeneratorCell>();
@@ -110,13 +118,18 @@ public class MazeGenerator
                 MazeGeneratorCell chozen = unvisitedNeighbours [UnityEngine.Random.Range(0, unvisitedNeighbours.Count)];
                 
                 RemoveWall(current,chozen);
+                //if()
 
 
                 chozen.Visited = true;
                 
                 stack.Push(chozen);
                 float Rand = UnityEngine.Random.Range(0f, 100f);
-                if (Rand>=90f) current.ShouldBeWithBlob = true;
+                if (Rand>=90f) {
+                    current.ShouldBeWithBlob = true;
+                    current.RandomBlob();
+                    CellsWithBlobs.Add(current);
+                }
                 LastMoveWasTrue = true;
                 current = chozen;
                 chozen.DistanceFromStart = stack.Count;
@@ -126,8 +139,10 @@ public class MazeGenerator
                 if(LastMoveWasTrue) 
                 {
                     current.ShouldBeWithBlob = true;
+                    current.RandomBlob();
+                    CellsWithBlobs.Add(current);
                     LastMoveWasTrue = false;
-                    Debug.Log("POP");
+                    
                 }
                 
                 current = stack.Pop();
@@ -138,6 +153,15 @@ public class MazeGenerator
 
         
     }
+
+    // private bool CheckDoorsAndBlobs(List<MazeGeneratorCell> cellsWithBlobs, List<string> Barriers){
+    //     bool Result;
+    //     int CountGreenBlobs, CountRedBlobs, CountBlueBlobs, CountYellowBlobs;
+
+
+
+    //     return Result;
+    // }
 
     private void RemoveWall(MazeGeneratorCell current, MazeGeneratorCell chozen)
     {

@@ -1524,18 +1524,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
+      propertyPath: Inventory.Array.data[0].Count
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
       propertyPath: Inventory.Array.data[1].Count
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: Inventory.Array.data[2].Count
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: Inventory.Array.data[3].Count
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}

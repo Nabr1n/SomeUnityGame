@@ -26,11 +26,14 @@ public class ColorBubbleInventory : MonoBehaviour
 
 
     [SerializeField] private Transform LeftHand, RightHand;
+
+    public static BlobObject ActivatedBlob;
     
 
     private void Start() {
         leftArmObj = 0;
         RightArmObj = 0;
+        ActivatedBlob = null;
     }
 
     public void PickUP(BlobObject blobObject, int count){
@@ -57,7 +60,7 @@ public class ColorBubbleInventory : MonoBehaviour
                 if (LMBcurrent >= LMBMax/2 && LMBcurrent < LMBMax)
                 {
                 
-                SwitchBubble("Left");
+                SwitchBubble2("Left");
                 
                 LMBcurrent = 0;
                 //действие 1
@@ -65,20 +68,21 @@ public class ColorBubbleInventory : MonoBehaviour
                 }
                 else if(LMBcurrent >= LMBMax){
                     LMBcurrent = 0;
-                //действие 2
+                    UseCurrentBubble("Left");
                 }
                 else LMBcurrent = 0;
             break;
             case "Right":
                 if (RMBcurrent >= LMBMax/2 && RMBcurrent < LMBMax)
                 {
-                SwitchBubble("Right");
+                SwitchBubble2("Right");
                 RMBcurrent = 0;
                 //действие 1
 
                 }
                 else if(RMBcurrent >= LMBMax){
                     RMBcurrent = 0;
+                    UseCurrentBubble("Right");
                 //действие 2
                 }
                 else RMBcurrent = 0;
@@ -93,6 +97,8 @@ public class ColorBubbleInventory : MonoBehaviour
         
         switch (Hand){
             case "Left":
+
+            
             if(!(leftArmObj+1>Inventory.Count-1)&&leftArmObj+1!=RightArmObj){
                 leftArmObj ++;
             }
@@ -105,7 +111,7 @@ public class ColorBubbleInventory : MonoBehaviour
             else if (leftArmObj+1>Inventory.Count-1&&RightArmObj==0){
                 leftArmObj = 1;
             }
-            Debug.Log(leftArmObj);
+            
             break;
 
             case "Right":
@@ -129,6 +135,73 @@ public class ColorBubbleInventory : MonoBehaviour
         }
     }
 
+
+
+    private void SwitchBubble2(string Hand){
+        bool exist = false;
+        
+        switch (Hand){
+            case "Left":
+
+            for (int i = 0; i < Inventory.Count; i++)
+            {
+                int selected = (i + 1 + leftArmObj)%Inventory.Count;
+                if(Inventory[selected].Count>0&&selected != RightArmObj){
+                    leftArmObj = selected;
+                    exist = true;
+                }
+            }
+            if (!exist) leftArmObj = -1;
+            break;
+
+            case "Right":
+             for (int i = 0; i < Inventory.Count; i++)
+            {
+                int selected = (i + 1 + RightArmObj)%Inventory.Count;
+                if(Inventory[selected].Count>0&&selected != leftArmObj){
+                    RightArmObj = selected;
+                    exist = true;
+                }
+            }
+            if (!exist){
+                RightArmObj = -1;
+            }
+            Debug.Log(RightArmObj);
+            
+            break;
+        }
+    }
+
+
+    private void UseCurrentBubble(string Side){
+        switch (Side){
+            case "Left":
+               
+                    ActivatedBlob = Inventory[leftArmObj].Object;
+                    Inventory[leftArmObj].Count--;
+                    if(Inventory[RightArmObj].Count<1) SwitchBubble2 ("Left");
+                
+                    
+               
+
+            break;
+            case "Right":
+                
+                    ActivatedBlob = Inventory[RightArmObj].Object;
+                    Inventory[RightArmObj].Count--;
+                    if(Inventory[RightArmObj].Count<1) SwitchBubble2("Right");
+                
+            break;
+        }
+    }
+
+    private void RefreshHands(){
+        if (leftArmObj > Inventory.Count-1){
+            if (RightArmObj != 0) leftArmObj = 0;
+            else if (RightArmObj == 0 && Inventory.Count>2) leftArmObj = 1;
+            else if (Inventory.Count<=1) leftArmObj = -1;
+        }
+    }
 
 
     private void Update() {

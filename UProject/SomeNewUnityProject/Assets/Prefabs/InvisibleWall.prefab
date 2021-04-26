@@ -29,7 +29,7 @@ Transform:
   m_LocalPosition: {x: 2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2916425694141215457}
+  m_Father: {fileID: 6783657043547165422}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &2965963339781958290
@@ -4764,7 +4764,7 @@ Transform:
   m_LocalPosition: {x: -2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2916425694141215457}
+  m_Father: {fileID: 6783657043547165422}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &4659772984136391426
@@ -9499,7 +9499,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2916425694141215457}
+  m_Father: {fileID: 6783657043547165422}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &1248368158692481266
@@ -14205,6 +14205,41 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!1 &4200292544899090610
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6783657043547165422}
+  m_Layer: 0
+  m_Name: ParticlesHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6783657043547165422
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4200292544899090610}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4119401592738159096}
+  - {fileID: 5938152695534928870}
+  - {fileID: 8079689288357733648}
+  - {fileID: 6941634824826679144}
+  - {fileID: 1638356370360462704}
+  m_Father: {fileID: 2916425694141215457}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5672290627561672825
 GameObject:
   m_ObjectHideFlags: 0
@@ -14234,7 +14269,7 @@ Transform:
   m_LocalPosition: {x: -4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2916425694141215457}
+  m_Father: {fileID: 6783657043547165422}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &4009260492707746346
@@ -18949,6 +18984,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2916425694141215457}
+  - component: {fileID: 1834522613634926659}
+  - component: {fileID: 8436174920582716526}
   m_Layer: 0
   m_Name: InvisibleWall
   m_TagString: Untagged
@@ -18967,14 +19004,44 @@ Transform:
   m_LocalPosition: {x: 0, y: -2.01, z: -0.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4119401592738159096}
-  - {fileID: 5938152695534928870}
-  - {fileID: 8079689288357733648}
-  - {fileID: 6941634824826679144}
-  - {fileID: 1638356370360462704}
+  - {fileID: 6783657043547165422}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1834522613634926659
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5841291177093240285}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.37, y: 9.921965, z: 1.01}
+  m_Center: {x: 0, y: 4.4609823, z: 0}
+--- !u!114 &8436174920582716526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5841291177093240285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23d74dffd5cdf943a6cc710580e455c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myCollision: {fileID: 1834522613634926659}
+  myParticles:
+  - {fileID: 1248368158692481266}
+  - {fileID: 2965963339781958290}
+  - {fileID: 6880526002284663381}
+  - {fileID: 4659772984136391426}
+  - {fileID: 4009260492707746346}
+  ParticleHolder: {fileID: 4200292544899090610}
+  myKeyBlob: {fileID: 0}
 --- !u!1 &8112139291341859184
 GameObject:
   m_ObjectHideFlags: 0
@@ -19004,7 +19071,7 @@ Transform:
   m_LocalPosition: {x: 4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2916425694141215457}
+  m_Father: {fileID: 6783657043547165422}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &6880526002284663381

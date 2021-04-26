@@ -428,15 +428,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Inventory:
   - Object: {fileID: 11400000, guid: 99c9ed23a86cd4c47bfd4bed97d3c867, type: 2}
-    Count: 2
+    Count: 0
+  - Object: {fileID: 11400000, guid: f801a3257b8ee7942bd9b7971cb1a5b8, type: 2}
+    Count: 0
+  - Object: {fileID: 11400000, guid: 8c88398af0fc4a649b910556ff73658c, type: 2}
+    Count: 0
+  - Object: {fileID: 11400000, guid: b2e77c04cce810d4ebc9ec00cc8e9fb1, type: 2}
+    Count: 0
   LeftArm: {fileID: 0}
   RightArm: {fileID: 0}
   leftArmObj: 0
   RightArmObj: 0
   LMBcurrent: 0
   RMBcurrent: 0
-  LMBMax: 0
-  RMBMax: 0
+  LMBMax: 1
+  RMBMax: 1
   LeftHand: {fileID: 2580916742869397183}
   RightHand: {fileID: 5161718879805049319}
 --- !u!82 &355860091755703307
