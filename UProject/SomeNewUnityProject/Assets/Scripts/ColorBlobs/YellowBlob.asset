@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9839c979971008b4488ec92a1f2d5624, type: 3}
   m_Name: YellowBlob
   m_EditorClassIdentifier: 
-  MyColor: {r: 1, g: 1, b: 0, a: 0}
+  MyColor: {r: 1, g: 1, b: 0, a: 1}
+  MyColorName: Yellow
+  myMaterial: {fileID: 2100000, guid: bead166364556d74d95d025159237c4c, type: 2}

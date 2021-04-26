@@ -6,5 +6,8 @@ using UnityEngine;
 public class BlobObject : ScriptableObject
 {
     public Color MyColor;
+    public string MyColorName;
+
+    public Material myMaterial;
     
 }

@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9839c979971008b4488ec92a1f2d5624, type: 3}
   m_Name: GreenBlob
   m_EditorClassIdentifier: 
-  MyColor: {r: 0, g: 1, b: 0, a: 0}
+  MyColor: {r: 0, g: 1, b: 0, a: 1}
+  MyColorName: Green
+  myMaterial: {fileID: 2100000, guid: 3f5f5b33ceb797f4cb52ff4b1e00e8fe, type: 2}
