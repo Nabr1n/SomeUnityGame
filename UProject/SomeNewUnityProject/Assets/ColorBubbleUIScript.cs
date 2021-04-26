@@ -8,6 +8,8 @@ public class ColorBubbleUIScript : MonoBehaviour
     // Start is called before the first frame update
     private ColorBubbleInventory InventoryRef;
 
+    [SerializeField] private int myIndex;
+
     [SerializeField] private BlobObject myBlob;
     [SerializeField] private Image myImage;
 

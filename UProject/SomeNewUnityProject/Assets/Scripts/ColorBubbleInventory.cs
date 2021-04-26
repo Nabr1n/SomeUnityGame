@@ -20,13 +20,18 @@ public class ColorBubbleInventory : MonoBehaviour
     public List<InventoryBubble> Inventory = new List<InventoryBubble>();
     
     [SerializeField] private GameObject LeftArm, RightArm;
-    private int leftArmObj, RightArmObj;
+    [HideInInspector] public int leftArmObj, RightArmObj;
     public float LMBcurrent, RMBcurrent, LMBMax, RMBMax;
 
 
 
     [SerializeField] private Transform LeftHand, RightHand;
     
+
+    private void Start() {
+        leftArmObj = 0;
+        RightArmObj = 0;
+    }
 
     public void PickUP(BlobObject blobObject, int count){
         bool Exist = false;
@@ -52,6 +57,8 @@ public class ColorBubbleInventory : MonoBehaviour
                 if (LMBcurrent >= LMBMax/2 && LMBcurrent < LMBMax)
                 {
                 
+                SwitchBubble("Left");
+                
                 LMBcurrent = 0;
                 //действие 1
 
@@ -65,7 +72,7 @@ public class ColorBubbleInventory : MonoBehaviour
             case "Right":
                 if (RMBcurrent >= LMBMax/2 && RMBcurrent < LMBMax)
                 {
-                
+                SwitchBubble("Right");
                 RMBcurrent = 0;
                 //действие 1
 
@@ -81,6 +88,48 @@ public class ColorBubbleInventory : MonoBehaviour
     }
 
 
+    private void SwitchBubble(string Hand){
+        
+        
+        switch (Hand){
+            case "Left":
+            if(!(leftArmObj+1>Inventory.Count-1)&&leftArmObj+1!=RightArmObj){
+                leftArmObj ++;
+            }
+            else if (!(leftArmObj+1>Inventory.Count-1)&&leftArmObj+1==RightArmObj){
+                leftArmObj += 2;
+            }
+            else if (leftArmObj+1>Inventory.Count-1&&RightArmObj!=0){
+                leftArmObj = 0;
+            }
+            else if (leftArmObj+1>Inventory.Count-1&&RightArmObj==0){
+                leftArmObj = 1;
+            }
+            Debug.Log(leftArmObj);
+            break;
+
+            case "Right":
+             if(!(RightArmObj+1>Inventory.Count-1)&&RightArmObj+1!=leftArmObj){
+                RightArmObj ++;
+            }
+            else if(!(RightArmObj+1>Inventory.Count-1)&&RightArmObj+1==leftArmObj){
+                RightArmObj +=2;
+            }
+            else if (RightArmObj+1>Inventory.Count-1&&leftArmObj!=0){
+                RightArmObj = 0;
+            }
+
+            else if (RightArmObj+1>Inventory.Count-1&&leftArmObj==0){
+                RightArmObj = 1;
+            }
+            
+            Debug.Log(RightArmObj);
+            
+            break;
+        }
+    }
+
+
 
     private void Update() {
         if (Input.GetAxis("MouseLeft")>0) {
@@ -92,6 +141,6 @@ public class ColorBubbleInventory : MonoBehaviour
         else checkMouseInput("Right");
         
 
-        Debug.Log (LMBcurrent);
+        
     }
 }

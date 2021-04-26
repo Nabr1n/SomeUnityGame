@@ -17,7 +17,26 @@ public class MazeGeneratorCell
 
     public bool MazeExit = false;
 
-    public bool ShouldBeWithBlob = true;
+    public bool ShouldBeWithBlob = false;
+    
+    public void RandomBlob() {
+       int Rand = UnityEngine.Random.Range(0,3);
+       switch (Rand){
+           case 0:
+           BlobType = "Green";
+           break;
+           case 1:
+           BlobType = "Red";
+           break;
+           case 2:
+           BlobType = "Yellow";
+           break;
+           case 3:
+           BlobType = "Blue";
+           break;
+
+       }
+    }
 
     public string BlobType = "Null";
     public MazeGeneratorCell(int x, int y){
@@ -56,14 +75,19 @@ public class MazeGenerator
         
         RemoveWallsWithBackTracker (maze);
         PlaceMazeExit(maze);
+        PlaceMazeDoors(maze);
 
         return maze;
     }
 
+    private void PlaceMazeDoors(MazeGeneratorCell[,] maze)
+    {
+        
+    }
 
-      private void RemoveWallsWithBackTracker(MazeGeneratorCell[,] maze){
+    private void RemoveWallsWithBackTracker(MazeGeneratorCell[,] maze){
         MazeGeneratorCell current = maze [0,0];
-        //bool LastMoveWasTrue = true;
+        bool LastMoveWasTrue = true;
 
         current.DistanceFromStart = 0;
         current.Visited = true;
@@ -86,23 +110,26 @@ public class MazeGenerator
                 MazeGeneratorCell chozen = unvisitedNeighbours [UnityEngine.Random.Range(0, unvisitedNeighbours.Count)];
                 
                 RemoveWall(current,chozen);
+
+
                 chozen.Visited = true;
                 
                 stack.Push(chozen);
                 float Rand = UnityEngine.Random.Range(0f, 100f);
                 if (Rand>=90f) current.ShouldBeWithBlob = true;
-                //LastMoveWasTrue = true;
+                LastMoveWasTrue = true;
                 current = chozen;
                 chozen.DistanceFromStart = stack.Count;
                 
             }
             else {
-                // if(LastMoveWasTrue) 
-                // {
-                //     current.ShouldBeWithBlob = true;
-                //     LastMoveWasTrue = false;
-                // }
-                //Debug.Log(stack.Count);
+                if(LastMoveWasTrue) 
+                {
+                    current.ShouldBeWithBlob = true;
+                    LastMoveWasTrue = false;
+                    Debug.Log("POP");
+                }
+                
                 current = stack.Pop();
             }
 

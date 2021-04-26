@@ -13,6 +13,8 @@ public class RoundedPBScript : MonoBehaviour
 
     public void UpdateBar(float CurrentNum, float MaxNum){
         float alpha = CurrentNum/MaxNum;
+        if (alpha > 0.5f) Indicator.enabled = true;
+        else Indicator.enabled = false;
         Bar.fillAmount = alpha;
     }
 
@@ -25,7 +27,7 @@ public class RoundedPBScript : MonoBehaviour
         switch (mySide){
             case "Left":
             UpdateBar(myInv.LMBcurrent, myInv.LMBMax);
-            
+
 
             break;
             
