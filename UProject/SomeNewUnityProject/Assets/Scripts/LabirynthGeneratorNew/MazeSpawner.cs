@@ -7,6 +7,14 @@ public class MazeSpawner : MonoBehaviour
     [SerializeField] GameObject CellPrefab;
     [SerializeField] float CellSize;
     private MazeGeneratorCell[,] maze;
+    [System.Serializable]
+    public class BlobsDict{
+        public string Name;
+        public BlobObject Blob;
+    
+    }
+
+    [SerializeField] private BlobsDict[] Blobs;
 
     void Start()
     {
@@ -26,7 +34,21 @@ public class MazeSpawner : MonoBehaviour
                 F.WallLeft.SetActive(maze[w,l].WallLeft);
                 F.WallBottom.SetActive(maze[w,l].WallBottom);
                 F.MazeExit = maze[w,l].MazeExit;
-                F.CheckBlob(maze[w,l].ShouldBeWithBlob, "Green");
+                F.CheckBlob(maze[w,l].ShouldBeWithBlob, maze[w,l].BlobType);
+
+                if(maze[w,l].BarrierLeft){
+                    F.BarrierLeft.SetActive(true);
+                    F.BarrierLeft.GetComponent<BarrierScript>().myKeyBlob = FindBlobByString(maze[w,l].BarrierLeftObj);
+                }
+                else F.BarrierLeft.SetActive(false);
+
+                if(maze[w,l].BarrierBottom){
+                    F.BarrierBottom.SetActive(true);
+                    F.BarrierBottom.GetComponent<BarrierScript>().myKeyBlob = FindBlobByString(maze[w,l].BarrierBottomObj);
+                }
+                else F.BarrierBottom.SetActive(false);
+
+                
                 //F.CheckBlob(false, "Green");
                 yield return null;
             }
@@ -35,7 +57,18 @@ public class MazeSpawner : MonoBehaviour
         yield return null;
     }
 
-  
+    public BlobObject FindBlobByString(string Name){
+        BlobObject blob = null;
+        
+        for (int i = 0; i < Blobs.Length; i++)
+        {
+            if (Blobs[i].Name == Name){
+                
+                blob =  Blobs[i].Blob;
+            }
+        }
+        return blob;
+    }
 
     void Update()
     {

@@ -11,11 +11,11 @@ public class MazeGeneratorCell
     public bool WallLeft = true;
     public bool WallBottom = true;
 
-    public bool BarrierRight = false;
+    public bool BarrierBottom = false;
     public bool BarrierLeft = false;
 
     public string BarrierLeftObj;
-    public string BarrierRightObj;
+    public string BarrierBottomObj;
     public int DistanceFromStart;
 
     public bool Visited = false;
@@ -25,7 +25,7 @@ public class MazeGeneratorCell
     public bool ShouldBeWithBlob = false;
     
     public string RandomBlob() {
-       int Rand = UnityEngine.Random.Range(0,3);
+       int Rand = UnityEngine.Random.Range(0,4);
        switch (Rand){
            case 0:
            BlobType = "Green";
@@ -118,7 +118,10 @@ public class MazeGenerator
                 MazeGeneratorCell chozen = unvisitedNeighbours [UnityEngine.Random.Range(0, unvisitedNeighbours.Count)];
                 
                 RemoveWall(current,chozen);
-                //if()
+                if(CheckDoorsAndBlobs(CellsWithBlobs,Barriers).Count>0){
+                    int RandIndex = UnityEngine.Random.Range(0,CheckDoorsAndBlobs(CellsWithBlobs,Barriers).Count-1);
+                    Barriers.Add(CreatePortal(CheckDoorsAndBlobs(CellsWithBlobs,Barriers)[RandIndex], current,chozen));
+                }
 
 
                 chozen.Visited = true;
@@ -154,14 +157,94 @@ public class MazeGenerator
         
     }
 
-    // private bool CheckDoorsAndBlobs(List<MazeGeneratorCell> cellsWithBlobs, List<string> Barriers){
-    //     bool Result;
-    //     int CountGreenBlobs, CountRedBlobs, CountBlueBlobs, CountYellowBlobs;
+    private string CreatePortal(string Type, MazeGeneratorCell current, MazeGeneratorCell chozen)
+    {
+       if (current.X == chozen.X){
+            if (current.Y > chozen.Y) {
+                current.BarrierBottom = true;
+                current.BarrierBottomObj = Type;
+                return Type;
+            }
+            else{
+                chozen.BarrierBottom = true;
+                chozen.BarrierBottomObj = Type;
+                return Type;
+            } 
+        }
+        else{
+            if (current.X > chozen.X){ 
+                current.WallLeft = true;
+                current.BarrierLeftObj = Type;
+                return Type;
+
+            }
+            else {
+                chozen.BarrierLeft= true;
+                chozen.BarrierLeftObj = Type;
+                return Type;
+            }
+        }
 
 
+        // if (current.X == chozen.X){
+        //     if (current.Y > chozen.Y) current.WallBottom = false;
+        //     else chozen.WallBottom = false;
+        // }
+        // else{
+        //     if (current.X > chozen.X) current.WallLeft = false;
+        //     else chozen.WallLeft = false;
+        // }
+    }
 
-    //     return Result;
-    // }
+    private List<string> CheckDoorsAndBlobs(List<MazeGeneratorCell> cellsWithBlobs, List<string> Barriers){
+        List<string> Result = new List<string>();
+        int CountGreenBlobs= 0, CountRedBlobs= 0, CountBlueBlobs= 0, CountYellowBlobs = 0;
+        int CountGreenBars= 0, CountRedBars= 0, CountBlueBars= 0, CountYellowBars = 0;
+
+        for (int i = 0; i < cellsWithBlobs.Count; i++)
+        {
+            switch (cellsWithBlobs[i].BlobType){
+                case "Red":
+                    CountRedBlobs++;
+                break;
+                case "Green":
+                    CountGreenBlobs++;
+                break;
+                case "Yellow":
+                CountYellowBlobs++;
+                break;
+                case "Blue":
+                CountBlueBlobs++;
+                break;
+            }
+        }
+
+        for (int i = 0; i < Barriers.Count; i++)
+        {
+            switch (Barriers[i]){
+                case "Red":
+                    CountRedBars++;
+                break;
+                case "Green":
+                    CountGreenBars++;
+                break;
+                case "Yellow":
+                CountYellowBars++;
+                break;
+                case "Blue":
+                CountBlueBars++;
+                break;
+            }
+        }
+
+        if (CountBlueBars<CountBlueBlobs) Result.Add("Blue");
+        if (CountRedBars<CountRedBlobs) Result.Add("Red");
+        if (CountYellowBars<CountYellowBlobs) Result.Add("Yellow");
+        if (CountGreenBars<CountGreenBlobs) Result.Add("Green");
+
+
+        return Result;
+    }
 
     private void RemoveWall(MazeGeneratorCell current, MazeGeneratorCell chozen)
     {
@@ -189,6 +272,9 @@ public class MazeGenerator
         }
 
         furthest.MazeExit = true;
+
+
+        
 
     }
 

@@ -180,6 +180,8 @@ MonoBehaviour:
     blob: {fileID: 8024658808259293749, guid: 5151cc7c03f255c4abd5afe14a054729, type: 3}
   - blobkey: Blue
     blob: {fileID: 8024658808259293749, guid: f47da7bc723e213498b5527959bf6e8e, type: 3}
+  BarrierLeft: {fileID: 8400151900960312674}
+  BarrierBottom: {fileID: 2731678971933496753}
   MazeExit: 0
 --- !u!1 &4138420923093183093
 GameObject:
@@ -427,7 +429,7 @@ PrefabInstance:
     - target: {fileID: 5841291177093240285, guid: 38e78554e6a1d324e82ebfe7a861bda7,
         type: 3}
       propertyPath: m_Name
-      value: InvisibleWall (1)
+      value: InvisibleWallLeft
       objectReference: {fileID: 0}
     - target: {fileID: 5841291177093240285, guid: 38e78554e6a1d324e82ebfe7a861bda7,
         type: 3}
@@ -442,6 +444,12 @@ PrefabInstance:
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38e78554e6a1d324e82ebfe7a861bda7, type: 3}
+--- !u!1 &8400151900960312674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5841291177093240285, guid: 38e78554e6a1d324e82ebfe7a861bda7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2703068820952307903}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1007121258679118430 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2916425694141215457, guid: 38e78554e6a1d324e82ebfe7a861bda7,
@@ -829,7 +837,7 @@ PrefabInstance:
     - target: {fileID: 5841291177093240285, guid: 38e78554e6a1d324e82ebfe7a861bda7,
         type: 3}
       propertyPath: m_Name
-      value: InvisibleWall
+      value: InvisibleWallBottom
       objectReference: {fileID: 0}
     - target: {fileID: 5841291177093240285, guid: 38e78554e6a1d324e82ebfe7a861bda7,
         type: 3}
@@ -844,6 +852,12 @@ PrefabInstance:
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38e78554e6a1d324e82ebfe7a861bda7, type: 3}
+--- !u!1 &2731678971933496753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5841291177093240285, guid: 38e78554e6a1d324e82ebfe7a861bda7,
+    type: 3}
+  m_PrefabInstance: {fileID: 8428681237845246060}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6665759944398074509 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2916425694141215457, guid: 38e78554e6a1d324e82ebfe7a861bda7,

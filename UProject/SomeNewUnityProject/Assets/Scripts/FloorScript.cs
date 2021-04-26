@@ -25,6 +25,9 @@ public class FloorScript : MonoBehaviour
     [SerializeField] private Transform BlobPlace;
     [SerializeField] private List<BlobPickUpStruct> blobs;
 
+    public GameObject BarrierLeft,BarrierBottom;
+    
+
     private void SetWalls(){
         int RandLeft = Random.Range(0, Walls.Length -1);
         int RandBottom = Random.Range(0, Walls.Length -1);

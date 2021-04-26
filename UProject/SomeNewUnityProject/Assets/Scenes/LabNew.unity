@@ -357,6 +357,15 @@ MonoBehaviour:
   CellPrefab: {fileID: 2634938038190435234, guid: 878f09a888383794ebf8b32bdf824211,
     type: 3}
   CellSize: 0.4
+  Blobs:
+  - Name: Yellow
+    Blob: {fileID: 11400000, guid: f801a3257b8ee7942bd9b7971cb1a5b8, type: 2}
+  - Name: Red
+    Blob: {fileID: 11400000, guid: 99c9ed23a86cd4c47bfd4bed97d3c867, type: 2}
+  - Name: Blue
+    Blob: {fileID: 11400000, guid: b2e77c04cce810d4ebc9ec00cc8e9fb1, type: 2}
+  - Name: Green
+    Blob: {fileID: 11400000, guid: 8c88398af0fc4a649b910556ff73658c, type: 2}
 --- !u!4 &76921393
 Transform:
   m_ObjectHideFlags: 0
@@ -1509,57 +1518,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
-      propertyPath: LMBMax
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
-        type: 3}
-      propertyPath: RMBMax
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
-        type: 3}
-      propertyPath: Inventory.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
-        type: 3}
       propertyPath: Inventory.Array.data[0].Count
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: Inventory.Array.data[1].Count
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: Inventory.Array.data[2].Count
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: Inventory.Array.data[3].Count
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
-        type: 3}
-      propertyPath: Inventory.Array.data[1].Object
-      value: 
-      objectReference: {fileID: 11400000, guid: f801a3257b8ee7942bd9b7971cb1a5b8,
-        type: 2}
-    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
-        type: 3}
-      propertyPath: Inventory.Array.data[2].Object
-      value: 
-      objectReference: {fileID: 11400000, guid: 8c88398af0fc4a649b910556ff73658c,
-        type: 2}
-    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
-        type: 3}
-      propertyPath: Inventory.Array.data[3].Object
-      value: 
-      objectReference: {fileID: 11400000, guid: b2e77c04cce810d4ebc9ec00cc8e9fb1,
-        type: 2}
     - target: {fileID: 5296546022369463128, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: m_AnchorMax.y
