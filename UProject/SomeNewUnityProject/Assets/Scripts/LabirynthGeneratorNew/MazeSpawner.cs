@@ -26,11 +26,13 @@ public class MazeSpawner : MonoBehaviour
                 F.WallLeft.SetActive(maze[w,l].WallLeft);
                 F.WallBottom.SetActive(maze[w,l].WallBottom);
                 F.MazeExit = maze[w,l].MazeExit;
-                F.CheckBlob(maze[w,l].ShouldBeWithBlob, "Green");
-                //F.CheckBlob(false, "Green");
+                //F.CheckBlob(maze[w,l].ShouldBeWithBlob, "Green");
+                F.CheckBlob(false, "Green");
                 yield return null;
             }
         }
+
+        yield return null;
     }
 
   

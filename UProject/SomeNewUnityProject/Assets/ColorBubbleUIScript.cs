@@ -14,7 +14,7 @@ public class ColorBubbleUIScript : MonoBehaviour
 
     private void Start() {
         InventoryRef = GameObject.FindWithTag("Player").GetComponent<ColorBubbleInventory>();
-        Debug.Log(InventoryRef.Inventory[0].Object.MyColor);
+        //Debug.Log(InventoryRef.Inventory[0].Object.MyColor);
     }
 
     private void CheckMyColor(){
@@ -26,7 +26,7 @@ public class ColorBubbleUIScript : MonoBehaviour
                 if(InventoryRef.Inventory[i].Object.MyColorName == myBlob.MyColorName ){
                     //Debug.Log("found");
                     found = true;
-                    Debug.Log( myBlob.MyColorName + "Exists");
+                    //Debug.Log( myBlob.MyColorName + "Exists");
                     myImage.enabled = true;
                     myImage.color = myBlob.MyColor;
                     break;
@@ -35,7 +35,7 @@ public class ColorBubbleUIScript : MonoBehaviour
                 else myImage.enabled = false;
             }
         }
-        //if (!found) this.gameObject.SetActive(false);
+        
     }
 
 
