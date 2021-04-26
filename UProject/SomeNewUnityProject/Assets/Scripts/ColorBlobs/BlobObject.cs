@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorBubble : MonoBehaviour
+[CreateAssetMenu]
+public class BlobObject : ScriptableObject
 {
+    public Color MyColor;
     
 }

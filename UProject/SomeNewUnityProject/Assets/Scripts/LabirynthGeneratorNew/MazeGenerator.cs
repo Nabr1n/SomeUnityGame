@@ -16,6 +16,10 @@ public class MazeGeneratorCell
     public bool Visited = false;
 
     public bool MazeExit = false;
+
+    public bool ShouldBeWithBlob = true;
+
+    public string BlobType = "Null";
     public MazeGeneratorCell(int x, int y){
         X = x;
         Y = y;
@@ -59,6 +63,8 @@ public class MazeGenerator
 
       private void RemoveWallsWithBackTracker(MazeGeneratorCell[,] maze){
         MazeGeneratorCell current = maze [0,0];
+        //bool LastMoveWasTrue = true;
+
         current.DistanceFromStart = 0;
         current.Visited = true;
 
@@ -83,11 +89,20 @@ public class MazeGenerator
                 chozen.Visited = true;
                 
                 stack.Push(chozen);
-
+                float Rand = UnityEngine.Random.Range(0f, 100f);
+                if (Rand>=90f) current.ShouldBeWithBlob = true;
+                //LastMoveWasTrue = true;
                 current = chozen;
                 chozen.DistanceFromStart = stack.Count;
+                
             }
             else {
+                // if(LastMoveWasTrue) 
+                // {
+                //     current.ShouldBeWithBlob = true;
+                //     LastMoveWasTrue = false;
+                // }
+                Debug.Log(stack.Count);
                 current = stack.Pop();
             }
 

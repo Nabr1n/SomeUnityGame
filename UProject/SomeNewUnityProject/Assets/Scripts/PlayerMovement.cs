@@ -87,7 +87,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Step(){
         currentStepDistance = 0;
-        Debug.Log("STEP!");
+        //Debug.Log("STEP!");
         StartCoroutine(myCamera.GetComponent<CameraShake>().Shake(0.1f, 0.1f));
     }
 
