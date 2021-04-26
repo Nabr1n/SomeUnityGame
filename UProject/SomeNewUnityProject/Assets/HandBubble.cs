@@ -30,10 +30,10 @@ public class HandBubble : MonoBehaviour
             case ("Left"):
             if(myInv.leftArmObj!=-1) {
                 CurrentBlob = myInv.Inventory[myInv.leftArmObj].Object;
-                myRend.enabled = true;
+                sphere.SetActive(true);
             }
             else {
-                myRend.enabled = false;
+                sphere.SetActive(false);
             }
             
             break;
@@ -41,10 +41,10 @@ public class HandBubble : MonoBehaviour
             case "Right":
              if(myInv.leftArmObj!=-1) {
                 CurrentBlob = myInv.Inventory[myInv.RightArmObj].Object;
-                myRend.enabled = true;
+                sphere.SetActive(true);
              }
              else{
-                 myRend.enabled = false;
+                 sphere.SetActive(false);
              }
 
             break;
