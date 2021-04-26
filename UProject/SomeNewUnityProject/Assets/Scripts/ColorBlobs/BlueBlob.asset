@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9839c979971008b4488ec92a1f2d5624, type: 3}
   m_Name: BlueBlob
   m_EditorClassIdentifier: 
-  MyColor: {r: 0, g: 0.5078261, b: 1, a: 0}
+  MyColor: {r: 0, g: 0.5078261, b: 1, a: 1}
+  MyColorName: Blue
+  myMaterial: {fileID: 2100000, guid: f72f870dc1db5c24db161c823d3ea156, type: 2}
