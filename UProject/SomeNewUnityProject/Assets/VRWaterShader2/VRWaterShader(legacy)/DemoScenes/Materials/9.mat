@@ -102,9 +102,9 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OverallGloss: 0.796635
-    - _OverallMetallic: 0.9128559
-    - _OverallNormalStrength: 0.7343698
+    - _OverallGloss: 0.8
+    - _OverallMetallic: 0.75
+    - _OverallNormalStrength: 0.8
     - _OverallWaveHeight: 0.7
     - _Parallax: 0.02
     - _PrimaryHeightStrength: 0.5
@@ -122,7 +122,7 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0, g: 1, b: 0.021962166, a: 1}
+    - _BaseColor: {r: 0, g: 1, b: 0.021962166, a: 0.6862745}
     - _BlendColor: {r: 0, g: 0, b: 0, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _CubemapBaseColor: {r: 1, g: 1, b: 1, a: 1}
