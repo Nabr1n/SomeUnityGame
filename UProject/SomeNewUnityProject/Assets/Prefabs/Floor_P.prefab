@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1564372440903474371}
   - component: {fileID: 8193998743903306592}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: FloorPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,6 +88,7 @@ Transform:
   - {fileID: 3120733636858549101}
   - {fileID: 5996301903268323376}
   - {fileID: 1564372440903474371}
+  - {fileID: 9173210419415579998}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -104,7 +105,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AmIMainRoad: 0
-  myPlane: {fileID: 0}
   WallLeft: {fileID: 6376239879377844874}
   WallBottom: {fileID: 2307182325192018391}
   Floors:
@@ -114,6 +114,16 @@ MonoBehaviour:
   - {fileID: 919132149155446097, guid: 123443c0f6bad2040a24dec56efa2007, type: 3}
   - {fileID: 919132149155446097, guid: 8e24263150caf5142ab1612d567aac9c, type: 3}
   floortransform: {fileID: 1564372440903474371}
+  BlobPlace: {fileID: 9173210419415579998}
+  blobs:
+  - blobkey: Red
+    blob: {fileID: 8024658808259293749, guid: b127d782df4a339478e232952675ebe3, type: 3}
+  - blobkey: Green
+    blob: {fileID: 8024658808259293749, guid: cc5e755927ba2a24aae5d62e9d9ff8b4, type: 3}
+  - blobkey: Yellow
+    blob: {fileID: 8024658808259293749, guid: 5151cc7c03f255c4abd5afe14a054729, type: 3}
+  - blobkey: Blue
+    blob: {fileID: 8024658808259293749, guid: f47da7bc723e213498b5527959bf6e8e, type: 3}
   MazeExit: 0
 --- !u!65 &6397637640549931460
 BoxCollider:
@@ -128,6 +138,36 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.170712, y: 6.0702305, z: 1.9391371}
   m_Center: {x: 0.035356846, y: 2.9948776, z: 0.045945242}
+--- !u!1 &8489852340922536953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9173210419415579998}
+  m_Layer: 0
+  m_Name: BlobPlace
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9173210419415579998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8489852340922536953}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6522711325863730408}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3226173584253416582
 PrefabInstance:
   m_ObjectHideFlags: 0
