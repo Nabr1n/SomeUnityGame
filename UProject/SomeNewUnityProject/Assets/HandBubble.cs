@@ -39,7 +39,7 @@ public class HandBubble : MonoBehaviour
             break;
 
             case "Right":
-             if(myInv.leftArmObj!=-1) {
+             if(myInv.RightArmObj!=-1) {
                 CurrentBlob = myInv.Inventory[myInv.RightArmObj].Object;
                 sphere.SetActive(true);
              }

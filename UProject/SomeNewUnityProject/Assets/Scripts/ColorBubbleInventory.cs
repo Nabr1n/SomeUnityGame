@@ -31,8 +31,8 @@ public class ColorBubbleInventory : MonoBehaviour
     
 
     private void Start() {
-        leftArmObj = 0;
-        RightArmObj = 0;
+        leftArmObj = -1;
+        RightArmObj = -1;
         ActivatedBlob = null;
     }
 
@@ -40,7 +40,7 @@ public class ColorBubbleInventory : MonoBehaviour
         bool Exist = false;
         for (int i = 0; i < Inventory.Count; i++)
         {
-            if (Inventory[i].Object == blobObject) 
+            if (Inventory[i].Object.MyColorName == blobObject.MyColorName) 
             {
                 Inventory[i].Count+=count;
                 Exist = true;
@@ -49,7 +49,15 @@ public class ColorBubbleInventory : MonoBehaviour
         if (!Exist){
             Inventory.Add(new InventoryBubble(blobObject, count));
         }
-
+        else if(leftArmObj==-1&&RightArmObj==-1){
+            leftArmObj = 0;
+        }
+        else if (leftArmObj!=-1&RightArmObj==-1){
+            SwitchBubble2("Right");
+        }
+        else if(leftArmObj==-1&&RightArmObj!=-1){
+            SwitchBubble2("Left");
+        }
         //Debug.Log("ITEMADDED!");
     }
 
@@ -151,7 +159,10 @@ public class ColorBubbleInventory : MonoBehaviour
                     exist = true;
                 }
             }
-            if (!exist) leftArmObj = -1;
+            if (!exist) {
+                leftArmObj = -1;
+                Debug.Log("REMOVEDLeft");
+                }
             break;
 
             case "Right":
@@ -165,6 +176,7 @@ public class ColorBubbleInventory : MonoBehaviour
             }
             if (!exist){
                 RightArmObj = -1;
+                Debug.Log("REMOVEDRIGHT");
             }
             Debug.Log(RightArmObj);
             
