@@ -50,14 +50,29 @@ public class ColorBubbleInventory : MonoBehaviour
             Inventory.Add(new InventoryBubble(blobObject, count));
         }
         else if(leftArmObj==-1&&RightArmObj==-1){
-            leftArmObj = 0;
+            for (int i = 0; i < Inventory.Count; i++)
+            {
+                if (Inventory[i].Object.MyColorName == blobObject.MyColorName){
+                    leftArmObj = i;
+                    break;
+                }
+            }
+            
+            
+            
         }
         else if (leftArmObj!=-1&RightArmObj==-1){
-            SwitchBubble2("Right");
+            for (int i = 0; i < Inventory.Count; i++)
+            {
+                if (Inventory[i].Object.MyColorName == blobObject.MyColorName){
+                    RightArmObj = i;
+                    break;
+                }
+            }
         }
-        else if(leftArmObj==-1&&RightArmObj!=-1){
-            SwitchBubble2("Left");
-        }
+        // else if(leftArmObj==-1&&RightArmObj!=-1){
+        //     SwitchBubble2("Left");
+        // }
         //Debug.Log("ITEMADDED!");
     }
 
