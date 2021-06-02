@@ -15,6 +15,9 @@ public class Follow : MonoBehaviour
     private void Start()
     {
         offset = transform.position - target.position;
+        
+
+
     }
 
 

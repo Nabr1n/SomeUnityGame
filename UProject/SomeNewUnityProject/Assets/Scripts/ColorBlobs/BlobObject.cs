@@ -10,4 +10,8 @@ public class BlobObject : ScriptableObject
 
     public Material myMaterial;
     
+
+
+
+    
 }

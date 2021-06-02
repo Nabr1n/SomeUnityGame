@@ -16,6 +16,8 @@ public class HandBubble : MonoBehaviour
 
     private void Start() {
         myRend = sphere.GetComponent<MeshRenderer>();
+        
+
         Player = GameObject.FindWithTag("Player");
         myInv = Player.GetComponent<ColorBubbleInventory>();
     }

@@ -18,9 +18,11 @@ public class FloorScript : MonoBehaviour
     public Transform LeftWallTransform;
     public GameObject WallBottom;
 
+    public GameObject Floor;
+
     [SerializeField] private GameObject[] Floors;
     [SerializeField] private GameObject[] Walls;
-    [SerializeField] private Transform floortransform;
+    [SerializeField] public GameObject floortransform;
 
     [SerializeField] private Transform BlobPlace;
     [SerializeField] private List<BlobPickUpStruct> blobs;
@@ -51,7 +53,7 @@ public class FloorScript : MonoBehaviour
 
     private void PickRandomFloor(){
         int Rand = Random.Range(0, Floors.Length-1);
-        Instantiate(Floors[Rand], floortransform);
+        Floor = Instantiate(Floors[Rand], floortransform.transform);
     }
 
     public void CheckBlob(bool ShouldBeWithBlob, string BlobType = "none"){
