@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "MyObjects/BlobObject")]
 public class BlobObject : ScriptableObject
 {
     public Color MyColor;

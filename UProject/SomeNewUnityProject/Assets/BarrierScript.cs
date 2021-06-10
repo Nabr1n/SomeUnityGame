@@ -20,7 +20,7 @@ public class BarrierScript : MonoBehaviour
             myCollision.enabled = true;
             for (int i = 0; i < myParticles.Length; i++)
             {
-                myParticles[i].startColor = myKeyBlob.MyColor;
+                //myParticles[i].startColor = myKeyBlob.MyColor;
             }    
     }
     private void Update() {
@@ -38,7 +38,7 @@ public class BarrierScript : MonoBehaviour
             myCollision.enabled = true;
             for (int i = 0; i < myParticles.Length; i++)
             {
-                myParticles[i].startColor = myKeyBlob.MyColor;
+                //myParticles[i].startColor = myKeyBlob.MyColor;
             }
 
             }

@@ -7,9 +7,12 @@ public class MazeSpawner : MonoBehaviour
     [SerializeField] GameObject CellPrefab;
     [SerializeField] float CellSize;
 
-    public int MazeWidth, MazeLength, SanctuarySideLength;
+    public int MazeWidth, MazeLength, SanctuarySideLength, ClosedSanctuarySideLen;
     private MazeGeneratorCellNew[,] maze;
+    public bool ShouldSanctuaryBeClosed = true;
+
     [System.Serializable]
+    
     public class BlobsDict{
         public string Name;
         public BlobObject Blob;
@@ -21,7 +24,7 @@ public class MazeSpawner : MonoBehaviour
     void Start()
     {
         MazeGeneratorNew generator = new MazeGeneratorNew();
-        maze = generator.GenerateNewMaze(MazeWidth, MazeLength, SanctuarySideLength);
+        maze = generator.GenerateNewMaze(MazeWidth, MazeLength, SanctuarySideLength, ShouldSanctuaryBeClosed, ClosedSanctuarySideLen);
         StartCoroutine(SpawnMaze());    
     }
 
@@ -32,14 +35,18 @@ public class MazeSpawner : MonoBehaviour
             {
                 FloorScript F = Instantiate(CellPrefab, new Vector3(w*10*CellSize,0,l*10*CellSize),Quaternion.identity).GetComponent<FloorScript>();
                 F.transform.localScale = new Vector3 (CellSize, CellSize, CellSize);
-                //if(w==0&&l==0) GameObject.FindWithTag("Player").transform.position = F.transform.position;
+                if(w==0&&l==0&&GameObject.FindWithTag("Player")!=null) GameObject.FindWithTag("Player").transform.position = F.transform.position;
                 F.WallLeft.SetActive(maze[w,l].WallLeft);
                 F.WallBottom.SetActive(maze[w,l].WallBottom);
                 F.MazeExit = maze[w,l].MazeExit;
                 F.CheckBlob(maze[w,l].ShouldBeWithBlob, maze[w,l].BlobType);
                 //if ( maze[w,l].AmISanctuary) F.floortransform.SetActive(false);
-
-                
+                F.bIsSanctuartyCenter = maze [w,l].AmISanctuaryCenter;
+                if(maze[w,l].AmISanctuaryCenter) F.PlaceSanctuary();
+                if(maze[w,l].AmIInClosedSanctuary) {
+                    GlobalSettings.GameGlobalSettings.ClosedSanctuaryFloors.Add(F.gameObject);
+                    //F.floortransform.SetActive(false);
+                }
                 // if(maze[w,l].BarrierLeft){
                 //     F.BarrierLeft.SetActive(true);
                 //     F.BarrierLeft.GetComponent<BarrierScript>().myKeyBlob = FindBlobByString(maze[w,l].BarrierLeftObj);

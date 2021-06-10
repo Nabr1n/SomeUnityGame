@@ -19,6 +19,7 @@ public class MazeGeneratorCellNew
     public bool MazeExit = false;
     public bool AmISanctuary = false;
     public bool AmISanctuaryCenter = false;
+    public bool AmIInClosedSanctuary;
 
     public bool ShouldBeWithBlob = false;
     
@@ -57,7 +58,7 @@ public class MazeGeneratorNew
 
     public int SantuarySideLength = 3;
 
-    public MazeGeneratorCellNew[,] GenerateNewMaze(int width, int height, int sancturySideLen){
+    public MazeGeneratorCellNew[,] GenerateNewMaze(int width, int height, int sancturySideLen, bool ClosedSanctuary, int ClosedSanctuarySideLen){
 
         Width = width;
         Height = height;
@@ -90,7 +91,7 @@ public class MazeGeneratorNew
         RemoveWallsWithBackTracker (maze);
         PlaceMazeExit(maze);
         PlaceMazeDoors(maze);
-        PlaceMazeSanctuary(maze);
+        PlaceMazeSanctuary(maze, ClosedSanctuary, ClosedSanctuarySideLen);
 
         return maze;
     }
@@ -166,7 +167,13 @@ public class MazeGeneratorNew
         
     }
 
-    private void PlaceMazeSanctuary(MazeGeneratorCellNew[,] maze){
+    private void RemoveSomeWalls(MazeGeneratorCellNew[,] maze, bool ShouldUseCount, int countofRemovedWalls, float ChanceToRemoveWall){
+        
+    }
+
+
+
+    private void PlaceMazeSanctuary(MazeGeneratorCellNew[,] maze, bool bShouldMakeClosedSanctuary, int ClosedSanctuarySideLen){
         
         //Length
         
@@ -179,7 +186,7 @@ public class MazeGeneratorNew
             int StartingWidth = RandWidth - SantuarySideLength/2;
             int StartingHeight = RandHeight - SantuarySideLength/2;
 
-            Debug.Log ((SantuarySideLength+StartingWidth));
+            //Debug.Log ((SantuarySideLength+StartingWidth));
 
 
             for (int w = StartingWidth; w < SantuarySideLength + StartingWidth; w++)
@@ -190,14 +197,37 @@ public class MazeGeneratorNew
                     
                     maze[w,l].WallLeft = false;
                     maze[w,l].WallBottom = false;
+
                     
-                    if (w == SantuarySideLength + StartingWidth - 1) maze [w+1, l].WallLeft = false;
-                    if (l == SantuarySideLength + StartingHeight - 1) maze [w, l+1].WallBottom = false;
+                    
+                    if (w == SantuarySideLength + StartingWidth - 1 && w!=Width) maze [w+1, l].WallLeft = false;
+                    if (l == SantuarySideLength + StartingHeight - 1&& l!=Height) maze [w, l+1].WallBottom = false;
 
                 }
             }
             
-        
+            //Debug.Log (ClosedSanctuarySideLen);
+
+
+            if (SantuarySideLength >= 5 && bShouldMakeClosedSanctuary){
+                for (int w = RandWidth - ClosedSanctuarySideLen/2; w < RandWidth + ClosedSanctuarySideLen/2 + 1; w++)
+                {
+                    for (int l = RandHeight - ClosedSanctuarySideLen/2; l < RandHeight+ ClosedSanctuarySideLen/2 + 1; l++)
+                    {
+                        if (w == RandWidth - ClosedSanctuarySideLen/2 && l!=RandHeight) maze [w,l].WallLeft = true;
+                        if (w == RandWidth + ClosedSanctuarySideLen/2 && l!=RandHeight) maze [w+1,l].WallLeft = true;
+                        if (l == RandHeight - ClosedSanctuarySideLen/2 && w!=RandWidth) maze [w, l].WallBottom = true;
+                        if (l == RandHeight + ClosedSanctuarySideLen/2 && w!=RandWidth) maze [w, l+1].WallBottom = true;
+                        maze[w,l].AmIInClosedSanctuary = true;
+
+                       
+
+                        //Debug.Log (w + " " + l);
+                    }
+                }
+            }
+            
+
     }
 
 

@@ -22,8 +22,12 @@ public class FloorScript : MonoBehaviour
 
     [SerializeField] private GameObject[] Floors;
     [SerializeField] private GameObject[] Walls;
+
+    [SerializeField] private GameObject Sanctuary, SanctuaryHolder;
+
     [SerializeField] public GameObject floortransform;
 
+    public bool bIsSanctuartyCenter;
     [SerializeField] private Transform BlobPlace;
     [SerializeField] private List<BlobPickUpStruct> blobs;
 
@@ -41,6 +45,14 @@ public class FloorScript : MonoBehaviour
         BottomWallMesh.transform.localPosition = new Vector3 (0,0,0);
         //BottomWallMesh.transform.localScale = 
     }
+
+    public void PlaceSanctuary(){
+        Instantiate (Sanctuary, SanctuaryHolder.transform);
+    }
+
+
+
+
 
     [HideInInspector] public bool MazeExit;
 
@@ -71,6 +83,7 @@ public class FloorScript : MonoBehaviour
     {
         PickRandomFloor();
         SetWalls();
+        
     }
     
     // Update is called once per frame
