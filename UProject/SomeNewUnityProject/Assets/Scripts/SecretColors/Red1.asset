@@ -15,3 +15,4 @@ MonoBehaviour:
   MyTip: "\u041A\u0440\u0430\u0441\u043D\u044B\u0439"
   ColorString: Red
   MyColor: {r: 1, g: 0, b: 0, a: 1}
+  myTexture: {fileID: 8400000, guid: 745ad69bb457b2248a4d847444ba11eb, type: 2}

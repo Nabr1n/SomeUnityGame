@@ -8,6 +8,8 @@ public class InventoryBubble{
     public int Count;
 
     
+
+    
     public InventoryBubble (BlobObject obj, int count){
         Object = obj;
         Count = count;
@@ -15,19 +17,26 @@ public class InventoryBubble{
 }
 
 
+    
+
 public class ColorBubbleInventory : MonoBehaviour
 {
     public List<InventoryBubble> Inventory = new List<InventoryBubble>();
+    public List<SecretColor> TipsInventory = new List<SecretColor>();
     
     [SerializeField] private GameObject LeftArm, RightArm;
     [HideInInspector] public int leftArmObj, RightArmObj;
     public float LMBcurrent, RMBcurrent, LMBMax, RMBMax;
-
-
+    [SerializeField] private Camera myCamera;
+    
+    private GameObject currentCenteredGameObject = null;
 
     [SerializeField] private Transform LeftHand, RightHand;
 
+    public GameObject PlayerUI;
+
     public static BlobObject ActivatedBlob;
+
     
 
     private void Start() {
@@ -113,6 +122,30 @@ public class ColorBubbleInventory : MonoBehaviour
         }
         
     }
+
+    private RaycastHit CheckForward(float distance, bool withDebug, Color DebugColor, float DebugDrawTime){
+        RaycastHit hit;
+        Physics.Raycast (myCamera.transform.position, myCamera.transform.forward,  out hit, distance);
+        //Physics.CapsuleCast(myCamera.transform.position + myCamera.transform.forward*1f, myCamera.transform.forward*distance, 0.5f ,myCamera.transform.forward, out hit, distance);
+        Debug.Log(hit.collider);
+        if (withDebug) Debug.DrawRay (hit.point, Vector3.up, Color.red, 30f);
+        
+        
+        return hit;
+
+    }
+
+    private GameObject GetGameObjectInCenter (float distance, bool withDebug, Color DebugColor, float DebugDrawTime){
+        GameObject CenteredObject = null;
+        if(CheckForward(distance, withDebug, DebugColor, DebugDrawTime).collider!=null) CenteredObject = 
+                                                        CheckForward(distance, withDebug, DebugColor, DebugDrawTime).collider.gameObject;
+        
+        
+
+
+        return CenteredObject;
+    }
+
 
 
     private void SwitchBubble(string Hand){
@@ -232,6 +265,7 @@ public class ColorBubbleInventory : MonoBehaviour
 
 
     private void Update() {
+        
         if (Input.GetAxis("MouseLeft")>0) {
             LMBcurrent = Mathf.Clamp(LMBcurrent+Time.deltaTime, 0, LMBMax);
         }
@@ -240,6 +274,38 @@ public class ColorBubbleInventory : MonoBehaviour
         if(Input.GetAxis("MouseRight")>0) RMBcurrent = Mathf.Clamp(RMBcurrent+Time.deltaTime, 0, RMBMax);
         else checkMouseInput("Right");
         
+        if (GetGameObjectInCenter(4f, true, Color.red, 1f)!=currentCenteredGameObject){
+            OutlineVisibilityManager newManager;
+           if(currentCenteredGameObject!=null && currentCenteredGameObject.TryGetComponent<OutlineVisibilityManager>(out newManager)){
+               newManager.myOutlineObject.GetComponent<Outline>().enabled = false;
+           }
+           currentCenteredGameObject = GetGameObjectInCenter(4f, true, Color.red, 1f);
+           if (currentCenteredGameObject!=null && currentCenteredGameObject.TryGetComponent<OutlineVisibilityManager>(out newManager)){
+                 newManager.myOutlineObject.GetComponent<Outline>().enabled = true;
+           }
+        }
+
+        if(Input.GetKeyDown(KeyCode.E)){
+            SanctuaryTip myTip;
+            if (currentCenteredGameObject.TryGetComponent<SanctuaryTip>(out myTip)){
+                TipsInventory.Add (myTip.mySecret);
+                Destroy(currentCenteredGameObject);
+                currentCenteredGameObject = null;
+            }
+        }
+       
+       if(Input.GetKeyDown(KeyCode.Tab)){
+           switch(PlayerUI.GetComponent<WidgetSwitcher>().GetActiveWidgetIndex()){
+               case (0):
+               PlayerUI.GetComponent<WidgetSwitcher>().SetActiveWidgetIndex(1);
+               break;
+               case(1):
+               PlayerUI.GetComponent<WidgetSwitcher>().SetActiveWidgetIndex(0);
+               break;
+
+           }
+
+       }
 
         
     }

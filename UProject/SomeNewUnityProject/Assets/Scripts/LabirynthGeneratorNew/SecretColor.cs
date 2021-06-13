@@ -11,4 +11,6 @@ public class SecretColor: ScriptableObject
     public string MyTip;
     public string ColorString;
     public Color MyColor;
+
+    public Texture myTexture;
 }

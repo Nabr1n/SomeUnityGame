@@ -151,8 +151,8 @@ public class MazeGeneratorNew
             else {
                 if(LastMoveWasTrue) 
                 {
-                    current.ShouldBeWithBlob = true;
-                    current.RandomBlob();
+                    // current.ShouldBeWithBlob = true;
+                    // current.RandomBlob();
                     //CellsWithBlobs.Add(current);
                     LastMoveWasTrue = false;
                     

@@ -5,11 +5,12 @@ using UnityEngine;
 public class MazeSpawner : MonoBehaviour
 {
     [SerializeField] GameObject CellPrefab;
-    [SerializeField] float CellSize;
+    public float CellSize;
 
     public int MazeWidth, MazeLength, SanctuarySideLength, ClosedSanctuarySideLen;
     private MazeGeneratorCellNew[,] maze;
     public bool ShouldSanctuaryBeClosed = true;
+    public bool WithDelay;
 
     [System.Serializable]
     
@@ -26,6 +27,8 @@ public class MazeSpawner : MonoBehaviour
         MazeGeneratorNew generator = new MazeGeneratorNew();
         maze = generator.GenerateNewMaze(MazeWidth, MazeLength, SanctuarySideLength, ShouldSanctuaryBeClosed, ClosedSanctuarySideLen);
         StartCoroutine(SpawnMaze());    
+
+        GlobalSettings.GameGlobalSettings.FloorsSize = 10*CellSize;
     }
 
     private IEnumerator SpawnMaze(){
@@ -43,10 +46,11 @@ public class MazeSpawner : MonoBehaviour
                 //if ( maze[w,l].AmISanctuary) F.floortransform.SetActive(false);
                 F.bIsSanctuartyCenter = maze [w,l].AmISanctuaryCenter;
                 if(maze[w,l].AmISanctuaryCenter) F.PlaceSanctuary();
-                if(maze[w,l].AmIInClosedSanctuary) {
+                if(maze[w,l].AmIInClosedSanctuary && !maze[w,l].AmISanctuaryCenter) {
                     GlobalSettings.GameGlobalSettings.ClosedSanctuaryFloors.Add(F.gameObject);
                     //F.floortransform.SetActive(false);
                 }
+                if(maze[w,l].AmISanctuary) GlobalSettings.GameGlobalSettings.SanctuaryFloors.Add(F.gameObject);
                 // if(maze[w,l].BarrierLeft){
                 //     F.BarrierLeft.SetActive(true);
                 //     F.BarrierLeft.GetComponent<BarrierScript>().myKeyBlob = FindBlobByString(maze[w,l].BarrierLeftObj);
@@ -61,7 +65,8 @@ public class MazeSpawner : MonoBehaviour
 
                 
                 //F.CheckBlob(false, "Green");
-                yield return null;
+                if(WithDelay) yield return null;
+                
             }
         }
 

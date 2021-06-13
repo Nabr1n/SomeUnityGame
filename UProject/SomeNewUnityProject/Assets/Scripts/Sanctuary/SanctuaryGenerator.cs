@@ -11,6 +11,7 @@ public class SanctuaryGenerator : MonoBehaviour
     private void Start()
     {
         PlaceHolders();
+        GlobalSettings.GameGlobalSettings.SpawnTips();
     }
 
 
@@ -30,6 +31,8 @@ public class SanctuaryGenerator : MonoBehaviour
 
             GameObject newPH = Instantiate(SanctuaryPH, new Vector3(x, gameObject.transform.position.y, z), Quaternion.identity);
             newPH.transform.LookAt(this.gameObject.transform);
+            newPH.GetComponent<SantuaryKeyHolder>().mySecret = GlobalSettings.GameGlobalSettings.FirstLevelSecrets[i];
+            Debug.Log (GlobalSettings.GameGlobalSettings.FirstLevelSecrets[i]);
 
             current_angle += additional_angle;
         }

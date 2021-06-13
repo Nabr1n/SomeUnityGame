@@ -9,9 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5141679777523748237}
+  - component: {fileID: 6926804369036249056}
+  - component: {fileID: 4068164043484751028}
+  - component: {fileID: 2052765881150888284}
   m_Layer: 0
   m_Name: SanctuarySlot
-  m_TagString: Untagged
+  m_TagString: SanctuarySlot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,6 +34,45 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6926804369036249056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2386258751967355781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9f8fa2862f368498ea6d6000a7cc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySecret: {fileID: 0}
+--- !u!65 &4068164043484751028
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2386258751967355781}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1, y: 1.1, z: 1.1}
+  m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!114 &2052765881150888284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2386258751967355781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cac7c7f82d48f941804a8459b1b9a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myOutlineObject: {fileID: 6683454023152178256}
 --- !u!1 &6683454023152178256
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,6 +85,8 @@ GameObject:
   - component: {fileID: 3680492999764027460}
   - component: {fileID: 6179812426184796682}
   - component: {fileID: 8579473209555751619}
+  - component: {fileID: 8394734410463675869}
+  - component: {fileID: 7057620926194597536}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -124,3 +168,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8394734410463675869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6683454023152178256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e9f8fa2862f368498ea6d6000a7cc87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySecret: {fileID: 0}
+--- !u!114 &7057620926194597536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6683454023152178256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 1
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
