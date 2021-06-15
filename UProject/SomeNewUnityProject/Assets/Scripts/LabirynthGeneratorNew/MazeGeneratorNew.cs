@@ -22,6 +22,8 @@ public class MazeGeneratorCellNew
     public bool AmIInClosedSanctuary;
 
     public bool ShouldBeWithBlob = false;
+
+    public bool UnbreakableWallLeft, UnbreakableWallBottom;
     
     public string RandomBlob() {
        int Rand = UnityEngine.Random.Range(0,4);
@@ -78,11 +80,15 @@ public class MazeGeneratorNew
 
         for (int x = 0; x < maze.GetLength(0); x++){
             maze[x,Height-1].WallLeft = false;
+            maze[x,Height-1].UnbreakableWallBottom = true;
+            maze[x,0].UnbreakableWallBottom = true;
         }
 
         for (int y = 0; y < maze.GetLength(1); y++)
         {
             maze[Width-1, y].WallBottom = false;
+            maze[Width-1, y].UnbreakableWallLeft = true;
+            maze[0,y].UnbreakableWallLeft = true;
         }
 
 

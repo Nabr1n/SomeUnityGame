@@ -859,6 +859,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1508718266728933734, guid: 08b0e828d72d9194db102d6a44c24903,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.30000305
+      objectReference: {fileID: 0}
     - target: {fileID: 1873424731447441951, guid: 08b0e828d72d9194db102d6a44c24903,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -903,6 +908,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SettingsScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4797698523857126136, guid: 08b0e828d72d9194db102d6a44c24903,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4853387661209666710, guid: 08b0e828d72d9194db102d6a44c24903,
         type: 3}

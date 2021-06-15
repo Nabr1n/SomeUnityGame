@@ -39,8 +39,8 @@ public class MazeSpawner : MonoBehaviour
                 FloorScript F = Instantiate(CellPrefab, new Vector3(w*10*CellSize,0,l*10*CellSize),Quaternion.identity).GetComponent<FloorScript>();
                 F.transform.localScale = new Vector3 (CellSize, CellSize, CellSize);
                 if(w==0&&l==0&&GameObject.FindWithTag("Player")!=null) GameObject.FindWithTag("Player").transform.position = F.transform.position;
-                F.WallLeft.SetActive(maze[w,l].WallLeft);
-                F.WallBottom.SetActive(maze[w,l].WallBottom);
+                F.WallLeft.SetActive(maze[w,l].UnbreakableWallLeft?maze[w,l].UnbreakableWallLeft : maze[w,l].WallLeft );
+                F.WallBottom.SetActive(maze[w,l].UnbreakableWallBottom ? maze[w,l].UnbreakableWallBottom : maze[w,l].WallBottom);
                 F.MazeExit = maze[w,l].MazeExit;
                 F.CheckBlob(maze[w,l].ShouldBeWithBlob, maze[w,l].BlobType);
                 //if ( maze[w,l].AmISanctuary) F.floortransform.SetActive(false);

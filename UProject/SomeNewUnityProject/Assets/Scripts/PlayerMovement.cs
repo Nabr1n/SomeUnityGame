@@ -64,9 +64,10 @@ public class PlayerMovement : MonoBehaviour
             rightSpeed = Mathf.Clamp (rightSpeed+Acceleration, 0f, MaxRightSpeed);
 
         }
-        else if (rightSpeed == 0f)
+        else if (rightAxis == 0f)
         {
              rightSpeed = 0f;
+            
         }
        
     }
@@ -100,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
         float forwardspeed = Input.GetAxis("Vertical");
         float rightspeed = Input.GetAxis("Horizontal");
+
 
         
         
