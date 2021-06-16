@@ -85,6 +85,8 @@ public class PlayerMovement : MonoBehaviour
         if (currentStepDistance >= StepLength) Step();
     }
 
+   
+
 
     private void Step(){
         currentStepDistance = 0;

@@ -1990,6 +1990,37 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.3000183
       objectReference: {fileID: 0}
+    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: Inventory.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: Inventory.Array.data[0].Count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: Inventory.Array.data[1].Count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: Inventory.Array.data[2].Count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: Inventory.Array.data[3].Count
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: Inventory.Array.data[2].Object
+      value: 
+      objectReference: {fileID: 11400000, guid: b2e77c04cce810d4ebc9ec00cc8e9fb1,
+        type: 2}
     - target: {fileID: 5233220056087874898, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: m_AnchorMax.y

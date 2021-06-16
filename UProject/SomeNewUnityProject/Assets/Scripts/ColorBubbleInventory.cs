@@ -16,13 +16,44 @@ public class InventoryBubble{
     }
 }
 
+public class ColorMath{
+    
 
+    public string MixUpColors(string Color1, string Color2 = "null"){
+        string FinalColor = "null";
+        if((Color2 == "null" && Color1 != "null")||(Color1 == "null" && Color2 != "null")){
+            FinalColor = Color1;
+        }
+        else{
+            if(Color1 == "Red"){
+                if(Color2 == "Blue") FinalColor = "Purple";
+                if (Color2 == "Yellow") FinalColor = "Orange";
+                
+            }
+            if(Color1 == "Blue"){
+                if(Color2 == "Red") FinalColor = "Purple";
+                if (Color2 == "Yellow") FinalColor = "Green";
+                
+            }
+            if(Color1 == "Yellow"){
+                if(Color2 == "Red") FinalColor = "Orange";
+                if (Color2 == "Blue") FinalColor = "Green";
+                
+            }
+        }
+
+        return FinalColor;
+    }
+}
     
 
 public class ColorBubbleInventory : MonoBehaviour
 {
     public List<InventoryBubble> Inventory = new List<InventoryBubble>();
     public List<SecretColor> TipsInventory = new List<SecretColor>();
+
+    public ColorMath MyColorMath = new ColorMath();
+    public string myActivatedColor;
     
     [SerializeField] private GameObject LeftArm, RightArm;
     [HideInInspector] public int leftArmObj, RightArmObj;
@@ -146,7 +177,16 @@ public class ColorBubbleInventory : MonoBehaviour
         return CenteredObject;
     }
 
+     private void CheckSpheresColor(){
+        BlobObject LeftBlob, RightBlob;
+        LeftBlob = Inventory[leftArmObj].Object;
+        RightBlob = Inventory[RightArmObj].Object;
+        if (LMBcurrent >= LMBMax && RMBcurrent >= RMBMax) myActivatedColor = MyColorMath.MixUpColors(LeftBlob.MyColorName, RightBlob.MyColorName); 
+        else if (LMBcurrent >= LMBMax && !(RMBcurrent >= RMBMax)) myActivatedColor = MyColorMath.MixUpColors(LeftBlob.MyColorName); 
+        else if (!(LMBcurrent >= LMBMax) && RMBcurrent >= RMBMax) myActivatedColor = MyColorMath.MixUpColors(RightBlob.MyColorName); 
+        else myActivatedColor = "null";
 
+    }
 
     private void SwitchBubble(string Hand){
         
@@ -268,11 +308,21 @@ public class ColorBubbleInventory : MonoBehaviour
         
         if (Input.GetAxis("MouseLeft")>0) {
             LMBcurrent = Mathf.Clamp(LMBcurrent+Time.deltaTime, 0, LMBMax);
+
+
         }
         else checkMouseInput("Left");
 
-        if(Input.GetAxis("MouseRight")>0) RMBcurrent = Mathf.Clamp(RMBcurrent+Time.deltaTime, 0, RMBMax);
+        if(Input.GetAxis("MouseRight")>0){
+            RMBcurrent = Mathf.Clamp(RMBcurrent+Time.deltaTime, 0, RMBMax);
+        
+        
+        
+        }
+
         else checkMouseInput("Right");
+
+        CheckSpheresColor();
         
         if (GetGameObjectInCenter(4f, true, Color.red, 1f)!=currentCenteredGameObject){
             OutlineVisibilityManager newManager;
