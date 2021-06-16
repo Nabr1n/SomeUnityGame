@@ -179,6 +179,7 @@ public class ColorBubbleInventory : MonoBehaviour
 
      private void CheckSpheresColor(){
         BlobObject LeftBlob, RightBlob;
+        
         LeftBlob = Inventory[leftArmObj].Object;
         RightBlob = Inventory[RightArmObj].Object;
         if (LMBcurrent >= LMBMax && RMBcurrent >= RMBMax) myActivatedColor = MyColorMath.MixUpColors(LeftBlob.MyColorName, RightBlob.MyColorName); 
