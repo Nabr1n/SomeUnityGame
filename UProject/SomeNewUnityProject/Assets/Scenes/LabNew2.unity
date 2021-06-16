@@ -1765,6 +1765,11 @@ PrefabInstance:
       propertyPath: fogGradient
       value: 
       objectReference: {fileID: 2800000, guid: a92803bcd584ab54ca0af75fc01efe93, type: 3}
+    - target: {fileID: 2641020785533103678, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: underwaterLevel
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2974787745171295245, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: m_AnchorMax.y
