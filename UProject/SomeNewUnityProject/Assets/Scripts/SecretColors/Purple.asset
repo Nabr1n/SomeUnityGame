@@ -16,3 +16,4 @@ MonoBehaviour:
   ColorString: Purple
   MyColor: {r: 1, g: 0, b: 1, a: 1}
   myTexture: {fileID: 8400000, guid: 8cc7c2bb515e08a4cbc8f87eea0ca1b4, type: 2}
+  Mesh: {fileID: 919132149155446097, guid: eb56b5699771e59499febcc85fdc278e, type: 3}

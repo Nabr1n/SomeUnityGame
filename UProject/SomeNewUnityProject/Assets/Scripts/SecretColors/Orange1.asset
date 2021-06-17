@@ -18,3 +18,4 @@ MonoBehaviour:
   ColorString: Orange
   MyColor: {r: 1, g: 0.72744685, b: 0, a: 1}
   myTexture: {fileID: 8400000, guid: 07f15b7f98a3e3b49a746312b2f01d04, type: 2}
+  Mesh: {fileID: 919132149155446097, guid: 0aed92bc52a0aac4f9b412f5aba510bc, type: 3}

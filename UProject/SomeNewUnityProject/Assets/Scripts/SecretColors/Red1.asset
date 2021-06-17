@@ -16,3 +16,4 @@ MonoBehaviour:
   ColorString: Red
   MyColor: {r: 1, g: 0, b: 0, a: 1}
   myTexture: {fileID: 8400000, guid: 745ad69bb457b2248a4d847444ba11eb, type: 2}
+  Mesh: {fileID: 919132149155446097, guid: 392ed13065a32c24d99f3a8c67b06be4, type: 3}
