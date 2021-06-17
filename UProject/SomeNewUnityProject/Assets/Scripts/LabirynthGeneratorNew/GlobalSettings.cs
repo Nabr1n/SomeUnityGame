@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
-
 public class GlobalSettings : MonoBehaviour
 {
     public int FirstLevelSecretsCount;
     public List<GameObject> ClosedSanctuaryFloors = new List<GameObject>();
     public List<GameObject> SanctuaryFloors = new List<GameObject>();
+
+    
 
     public static GlobalSettings GameGlobalSettings;
 
@@ -105,7 +105,7 @@ public class GlobalSettings : MonoBehaviour
                 float randX = Random.Range(-1*(FloorsSize-(FloorsSize*0.1f)), FloorsSize-(FloorsSize*0.1f)) / 2f;
                 float randZ = Random.Range(-1*(FloorsSize-(FloorsSize*0.1f)), FloorsSize-(FloorsSize*0.1f)) / 2f;
                 T = Instantiate (TipPrefab, hit.transform.position + new Vector3(randX, 0, randZ), Quaternion.identity);
-                T.GetComponent<SanctuaryTip>().mySecret = FirstLevelSecrets[i];
+                T.GetComponent<SanctuaryTip>().SetMySecret(FirstLevelSecrets[i]);
                 Debug.DrawRay (SanctuaryFloors[floorindex].transform.position + new Vector3 (0, 3f, 0) + new Vector3(randX, 0, randZ), new Vector3 (0,-50f, 0), Color.red, 150f);
             }
             

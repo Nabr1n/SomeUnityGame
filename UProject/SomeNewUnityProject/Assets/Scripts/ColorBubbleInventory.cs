@@ -136,14 +136,14 @@ public class ColorBubbleInventory : MonoBehaviour
                 else LMBcurrent = 0;
             break;
             case "Right":
-                if (RMBcurrent >= LMBMax/2 && RMBcurrent < LMBMax)
+                if (RMBcurrent >= RMBMax/2 && RMBcurrent < RMBMax)
                 {
                 SwitchBubble2("Right");
                 RMBcurrent = 0;
                 //действие 1
 
                 }
-                else if(RMBcurrent >= LMBMax){
+                else if(RMBcurrent >= RMBMax){
                     RMBcurrent = 0;
                     UseCurrentBubble("Right");
                 //действие 2
@@ -153,6 +153,32 @@ public class ColorBubbleInventory : MonoBehaviour
         }
         
     }
+
+    private void UseBlob(string Side){
+        switch (Side){
+        case ("Left"):
+        break;
+        case ("Right"):
+        break;
+        case ("Both"):
+        break;
+        }
+    }
+
+    private void CheckBlobUse(string Side){
+        switch (Side){
+            case ("Left"):
+
+            break;
+
+            case ("Right"):
+
+            break;
+        }
+    }
+
+
+
 
     private RaycastHit CheckForward(float distance, bool withDebug, Color DebugColor, float DebugDrawTime){
         RaycastHit hit;
@@ -178,10 +204,13 @@ public class ColorBubbleInventory : MonoBehaviour
     }
 
      private void CheckSpheresColor(){
-        BlobObject LeftBlob, RightBlob;
-        
+        BlobObject LeftBlob, RightBlob = new BlobObject();
         LeftBlob = Inventory[leftArmObj].Object;
         RightBlob = Inventory[RightArmObj].Object;
+        
+
+
+
         if (LMBcurrent >= LMBMax && RMBcurrent >= RMBMax) myActivatedColor = MyColorMath.MixUpColors(LeftBlob.MyColorName, RightBlob.MyColorName); 
         else if (LMBcurrent >= LMBMax && !(RMBcurrent >= RMBMax)) myActivatedColor = MyColorMath.MixUpColors(LeftBlob.MyColorName); 
         else if (!(LMBcurrent >= LMBMax) && RMBcurrent >= RMBMax) myActivatedColor = MyColorMath.MixUpColors(RightBlob.MyColorName); 
@@ -304,19 +333,33 @@ public class ColorBubbleInventory : MonoBehaviour
         }
     }
 
+    private void FindAnassignedColor(string Side){
+
+    }
+
 
     private void Update() {
         
         if (Input.GetAxis("MouseLeft")>0) {
-            LMBcurrent = Mathf.Clamp(LMBcurrent+Time.deltaTime, 0, LMBMax);
+            if(leftArmObj==-1) SwitchBubble2("Left");
+                
+            
+            if(leftArmObj!=-1) LMBcurrent = Mathf.Clamp(LMBcurrent+Time.deltaTime, 0, LMBMax);
 
 
         }
         else checkMouseInput("Left");
 
         if(Input.GetAxis("MouseRight")>0){
-            RMBcurrent = Mathf.Clamp(RMBcurrent+Time.deltaTime, 0, RMBMax);
+             if(RightArmObj==-1) SwitchBubble2("Right");
+                
+            
+            if(RightArmObj!=-1) RMBcurrent = Mathf.Clamp(RMBcurrent+Time.deltaTime, 0, RMBMax);
         
+
+            
+            
+            
         
         
         }

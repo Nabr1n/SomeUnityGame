@@ -13,4 +13,6 @@ public class SecretColor: ScriptableObject
     public Color MyColor;
 
     public Texture myTexture;
+
+    public GameObject Mesh;
 }
