@@ -9,9 +9,14 @@ public class GlobalSettings : MonoBehaviour
     public List<GameObject> ClosedSanctuaryFloors = new List<GameObject>();
     public List<GameObject> SanctuaryFloors = new List<GameObject>();
 
-    
+    public List<GameObject> NotSanctuaryFloors = new List<GameObject>();
 
     public static GlobalSettings GameGlobalSettings;
+
+    private ColorMath myColorMath = new ColorMath();
+
+    public List<string> AllBasicColorsToBePlaced = new List<string>();
+
 
     public SecretColor[] AllSecretColors;
 
@@ -27,6 +32,8 @@ public class GlobalSettings : MonoBehaviour
         GameGlobalSettings = this;
         
         FirstLevelSecrets = GenerateSecrets(FirstLevelSecretsCount);
+
+        AllBasicColorsToBePlaced = CalculateAllNeededColors(FirstLevelSecrets);
     }
 
     public List<SecretColor> GenerateSecrets(int Count){
@@ -43,6 +50,32 @@ public class GlobalSettings : MonoBehaviour
 
 
     }
+
+
+    private List<string> CalculateAllNeededColors(List<SecretColor> secretColors){
+        List<string> returnList = new List<string>();
+
+        for (int i = 0; i < secretColors.Count; i++)
+        {
+            for (int k = 0; k < myColorMath.GetBasicColorsFromMixed(secretColors[i].ColorString).Count; k++)
+            {
+                returnList.Add(myColorMath.GetBasicColorsFromMixed(secretColors[i].ColorString)[k]);
+            }
+        }
+
+
+
+
+        return returnList;
+
+    }
+
+
+     private void SpawnColorBlobs(List<string> colors, List<GameObject> floors){
+         
+
+
+     }
 
     public SecretColor GetUnlockedColor(List<SecretColor> lockedcolors){
         SecretColor checkedColor = AllSecretColors[0];

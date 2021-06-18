@@ -52,6 +52,43 @@ public class ColorMath{
 
         return FinalColor;
     }
+
+    public List<string> GetBasicColorsFromMixed(string MixedColorCode){
+        List<string> returnList = new List<string>();
+        switch (MixedColorCode){
+            case ("Red"):
+            returnList.Add("Red");
+            break;
+
+            case ("Blue"):
+            returnList.Add("Blue");
+            break;
+
+            case ("Yellow"):
+            returnList.Add("Yellow");
+            break;
+
+            case ("Green"):
+            returnList.Add("Blue");
+            returnList.Add("Yellow");
+            break;
+
+            case ("Purple"):
+            returnList.Add("Red");
+            returnList.Add("Blue");
+            break;
+
+            case ("Orange"):
+            returnList.Add("Red");
+            returnList.Add("Yellow");
+            break;
+
+        }
+
+
+
+        return returnList;
+    }
 }
     
 
