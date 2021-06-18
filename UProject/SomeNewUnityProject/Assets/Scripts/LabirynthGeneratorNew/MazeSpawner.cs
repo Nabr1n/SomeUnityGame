@@ -43,7 +43,7 @@ public class MazeSpawner : MonoBehaviour
                 F.WallBottom.SetActive(maze[w,l].UnbreakableWallBottom ? maze[w,l].UnbreakableWallBottom : maze[w,l].WallBottom);
                 F.MazeExit = maze[w,l].MazeExit;
                 F.CheckBlob(maze[w,l].ShouldBeWithBlob, maze[w,l].BlobType);
-                //if ( maze[w,l].AmISanctuary) F.floortransform.SetActive(false);
+                if ( maze[w,l].AmISanctuaryCenter) F.floortransform.SetActive(false);
                 F.bIsSanctuartyCenter = maze [w,l].AmISanctuaryCenter;
                 if(maze[w,l].AmISanctuaryCenter) F.PlaceSanctuary();
                 if(maze[w,l].AmIInClosedSanctuary && !maze[w,l].AmISanctuaryCenter) {
