@@ -51,6 +51,10 @@ public class MazeSpawner : MonoBehaviour
                     //F.floortransform.SetActive(false);
                 }
                 if(maze[w,l].AmISanctuary) GlobalSettings.GameGlobalSettings.SanctuaryFloors.Add(F.gameObject);
+
+                if(!maze[w,l].AmISanctuary)  GlobalSettings.GameGlobalSettings.NotSanctuaryFloors.Add(F.gameObject);
+
+                
                 // if(maze[w,l].BarrierLeft){
                 //     F.BarrierLeft.SetActive(true);
                 //     F.BarrierLeft.GetComponent<BarrierScript>().myKeyBlob = FindBlobByString(maze[w,l].BarrierLeftObj);
