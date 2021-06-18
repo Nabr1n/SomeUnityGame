@@ -21,7 +21,7 @@ public class WidgetSwitcher : MonoBehaviour
     }
     void Start()
     {
-        Debug.Log("123");
+        
     }
 
     public void SetActiveWidgetIndex(int index){

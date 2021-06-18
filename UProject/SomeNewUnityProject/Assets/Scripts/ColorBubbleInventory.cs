@@ -16,6 +16,14 @@ public class InventoryBubble{
     }
 }
 
+
+[System.Serializable]
+public class StringToColor{
+    public Color Color;
+    public string Code;
+}
+
+
 public class ColorMath{
     
 
@@ -51,6 +59,8 @@ public class ColorBubbleInventory : MonoBehaviour
 {
     public List<InventoryBubble> Inventory = new List<InventoryBubble>();
     public List<SecretColor> TipsInventory = new List<SecretColor>();
+
+    public List<StringToColor> CodeList = new List<StringToColor>();
 
     public ColorMath MyColorMath = new ColorMath();
     public string myActivatedColor;
@@ -130,8 +140,9 @@ public class ColorBubbleInventory : MonoBehaviour
 
                 }
                 else if(LMBcurrent >= LMBMax){
-                    LMBcurrent = 0;
-                    UseCurrentBubble("Left");
+                    CheckBlobUse("Left");
+                    
+                    
                 }
                 else LMBcurrent = 0;
             break;
@@ -144,8 +155,10 @@ public class ColorBubbleInventory : MonoBehaviour
 
                 }
                 else if(RMBcurrent >= RMBMax){
-                    RMBcurrent = 0;
-                    UseCurrentBubble("Right");
+                    CheckBlobUse("Right");
+                    
+                    
+                    
                 //действие 2
                 }
                 else RMBcurrent = 0;
@@ -155,23 +168,53 @@ public class ColorBubbleInventory : MonoBehaviour
     }
 
     private void UseBlob(string Side){
+
+        SantuaryKeyHolder myKeyHolder;
+
+        if(currentCenteredGameObject.TryGetComponent<SantuaryKeyHolder>(out myKeyHolder)){
+        CheckSpheresColor();
+        
+        
         switch (Side){
         case ("Left"):
+        myKeyHolder.AddMyBlob(myActivatedColor, MyActivatedColorToColor(myActivatedColor));
+        LMBcurrent = 0;
         break;
+
+
         case ("Right"):
+        myKeyHolder.AddMyBlob(myActivatedColor, MyActivatedColorToColor(myActivatedColor));
+        RMBcurrent = 0;
         break;
+
+
         case ("Both"):
+        myKeyHolder.AddMyBlob(myActivatedColor, MyActivatedColorToColor(myActivatedColor));
+        LMBcurrent = 0;
+        RMBcurrent = 0;
         break;
+        }
         }
     }
 
     private void CheckBlobUse(string Side){
         switch (Side){
             case ("Left"):
-
+            if(LMBcurrent>=LMBMax){
+                if(RMBcurrent>=RMBMax){
+                    UseBlob("Both");
+                }
+                else UseBlob("Left");
+            }
             break;
 
             case ("Right"):
+            if(RMBcurrent>=RMBMax){
+                if(LMBcurrent>=LMBMax){
+                    UseBlob("Both");
+                }
+                else UseBlob("Right");
+            }
 
             break;
         }
@@ -184,7 +227,7 @@ public class ColorBubbleInventory : MonoBehaviour
         RaycastHit hit;
         Physics.Raycast (myCamera.transform.position, myCamera.transform.forward,  out hit, distance);
         //Physics.CapsuleCast(myCamera.transform.position + myCamera.transform.forward*1f, myCamera.transform.forward*distance, 0.5f ,myCamera.transform.forward, out hit, distance);
-        Debug.Log(hit.collider);
+        //Debug.Log(hit.collider);
         if (withDebug) Debug.DrawRay (hit.point, Vector3.up, Color.red, 30f);
         
         
@@ -203,8 +246,23 @@ public class ColorBubbleInventory : MonoBehaviour
         return CenteredObject;
     }
 
+    public Color MyActivatedColorToColor(string Code){
+        Color color = Color.black;
+        for (int i = 0; i < CodeList.Count; i++)
+        {
+            Debug.Log(Code+ ":   " + CodeList[i]);
+            if(CodeList[i].Code == Code){
+                color = CodeList[i].Color;
+                Debug.Log(color);
+                break;
+            }
+        }
+        return color;
+    }
+
+
      private void CheckSpheresColor(){
-        BlobObject LeftBlob, RightBlob = new BlobObject();
+        BlobObject LeftBlob, RightBlob = null;
         LeftBlob = Inventory[leftArmObj].Object;
         RightBlob = Inventory[RightArmObj].Object;
         
@@ -279,7 +337,7 @@ public class ColorBubbleInventory : MonoBehaviour
             }
             if (!exist) {
                 leftArmObj = -1;
-                Debug.Log("REMOVEDLeft");
+                //Debug.Log("REMOVEDLeft");
                 }
             break;
 
@@ -294,9 +352,9 @@ public class ColorBubbleInventory : MonoBehaviour
             }
             if (!exist){
                 RightArmObj = -1;
-                Debug.Log("REMOVEDRIGHT");
+                //Debug.Log("REMOVEDRIGHT");
             }
-            Debug.Log(RightArmObj);
+            //Debug.Log(RightArmObj);
             
             break;
         }
@@ -366,7 +424,7 @@ public class ColorBubbleInventory : MonoBehaviour
 
         else checkMouseInput("Right");
 
-        CheckSpheresColor();
+        
         
         if (GetGameObjectInCenter(4f, true, Color.red, 1f)!=currentCenteredGameObject){
             OutlineVisibilityManager newManager;
@@ -399,6 +457,8 @@ public class ColorBubbleInventory : MonoBehaviour
 
            }
 
+
+        CheckSpheresColor();
        }
 
         
