@@ -12,6 +12,12 @@ public class FloorScript : MonoBehaviour
 {
     // Start is called before the first frame update
     [HideInInspector] public bool AmIMainRoad;
+    [SerializeField] private GameObject[] Rocks;
+    [SerializeField] int MaxRockCount, MinRockCount;
+
+    [SerializeField] float MinRocksScale, MaxRockScale;
+
+
    
     public GameObject WallLeft;
     
@@ -50,7 +56,22 @@ public class FloorScript : MonoBehaviour
         Instantiate (Sanctuary, SanctuaryHolder.transform);
     }
 
-
+    private void SpawnRocks(){
+        int count = Random.Range(MinRockCount, MaxRockCount);
+        for (int i = 0; i < count; i++)
+        {
+           GameObject newRock = Instantiate(Rocks[Random.Range(0, Rocks.Length)], 
+                            transform.position + new Vector3(Random.Range(-5f*transform.localScale.x, 5f*transform.localScale.x), 2f, Random.Range(-5f*transform.localScale.z, 5f*transform.localScale.z)), Quaternion.identity);
+            float RockScale = Random.Range(MinRocksScale, MaxRockScale);
+            newRock.transform.localScale = new Vector3 (RockScale, RockScale, RockScale);
+            newRock.AddComponent<Rigidbody>();
+            //newRock.GetComponent<Rigidbody>().isKinematic = true;
+            newRock.AddComponent<MeshCollider>();
+            newRock.GetComponent<MeshCollider>().sharedMesh = newRock.transform.GetChild(0).GetComponent<MeshFilter>().sharedMesh;
+            newRock.GetComponent<MeshCollider>().convex = true;
+            
+        }
+    }
 
 
 
@@ -79,10 +100,11 @@ public class FloorScript : MonoBehaviour
         }
     }
 
-    void Start()
+     void Start()
     {
         PickRandomFloor();
         SetWalls();
+        SpawnRocks();
         
     }
     

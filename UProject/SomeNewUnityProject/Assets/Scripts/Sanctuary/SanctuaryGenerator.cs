@@ -16,6 +16,7 @@ public class SanctuaryGenerator : MonoBehaviour
         }
     }
 
+    [SerializeField] private Animation myAnimation;
 
     [SerializeField] private GameObject SanctuaryPH;
     //private GameObject[] PlaceHolders;
@@ -62,12 +63,13 @@ public class SanctuaryGenerator : MonoBehaviour
     
     public void AddColor(string code){
         bool set = false;
+        bool allExist = true;
         for (int i = 0; i < SecretsCheck.Count; i++)
         {
             if(code == SecretsCheck[i].ColorCode&&!SecretsCheck[i].Exist){
                 SecretsCheck[i].Exist = true;
                 SecretsCheck[i].Count++;
-                Debug.Log("NEW COLOR!");
+                //Debug.Log("NEW COLOR!");
                 set = true;
                 break;
             }
@@ -76,12 +78,22 @@ public class SanctuaryGenerator : MonoBehaviour
               for (int i = 0; i < SecretsCheck.Count; i++)
               {
                 if(code == SecretsCheck[i].ColorCode&&SecretsCheck[i].Exist){
-                Debug.Log("EXISTING COLOR ++!");
+                //Debug.Log("EXISTING COLOR ++!");
                 SecretsCheck[i].Count++;
                 
             }
               }
         }
+        for (int i = 0; i < SecretsCheck.Count; i++)
+        {
+            if(!SecretsCheck[i].Exist) 
+            {
+                allExist = false;
+                break;
+            }
+        }
+        if(allExist) myAnimation.Play();
+
     }
 
     public void RemoveColor(string code){

@@ -177,25 +177,52 @@ public class ColorBubbleInventory : MonoBehaviour
         
         switch (Side){
         case ("Left"):
-        myKeyHolder.AddMyBlob(myActivatedColor, MyActivatedColorToColor(myActivatedColor));
-        LMBcurrent = 0;
+            myKeyHolder.AddMyBlob(myActivatedColor, MyActivatedColorToColor(myActivatedColor));
+            RemoveBlob("Left");
+            LMBcurrent = 0;
         break;
 
 
         case ("Right"):
-        myKeyHolder.AddMyBlob(myActivatedColor, MyActivatedColorToColor(myActivatedColor));
-        RMBcurrent = 0;
+            myKeyHolder.AddMyBlob(myActivatedColor, MyActivatedColorToColor(myActivatedColor));
+            RemoveBlob("Right");
+            RMBcurrent = 0;
         break;
 
 
         case ("Both"):
-        myKeyHolder.AddMyBlob(myActivatedColor, MyActivatedColorToColor(myActivatedColor));
-        LMBcurrent = 0;
-        RMBcurrent = 0;
+            myKeyHolder.AddMyBlob(myActivatedColor, MyActivatedColorToColor(myActivatedColor));
+            RemoveBlob("Both");
+            LMBcurrent = 0;
+            RMBcurrent = 0;
         break;
         }
         }
     }
+
+    private void RemoveBlob(string Side){
+        switch(Side){
+            case("Left"):
+                Inventory[leftArmObj].Count--;
+                if(!(Inventory[leftArmObj].Count>0)) SwitchBubble2("Left");
+            
+            break;
+
+            case ("Right"):
+                Inventory[RightArmObj].Count--;
+                if(!(Inventory[RightArmObj].Count>0)) SwitchBubble2("Right");
+            break;
+
+            case("Both"):
+                Inventory[leftArmObj].Count--;
+                Inventory[RightArmObj].Count--;
+                if(!(Inventory[leftArmObj].Count>0)) SwitchBubble2("Left");
+                if(!(Inventory[RightArmObj].Count>0)) SwitchBubble2("Right");
+            break;
+        }
+    }
+
+
 
     private void CheckBlobUse(string Side){
         switch (Side){
