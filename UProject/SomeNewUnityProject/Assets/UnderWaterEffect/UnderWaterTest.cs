@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 public class UnderWaterTest : MonoBehaviour
 {
 
@@ -18,6 +20,9 @@ public class UnderWaterTest : MonoBehaviour
     private Material defaultSkybox;
     private Material noSkybox;
 
+    private PostProcessVolume postProcess;
+    private Bloom b;
+    private Vignette vg;
     void Start()
     {
         //Set the background color
@@ -27,8 +32,32 @@ public class UnderWaterTest : MonoBehaviour
         defaultFogDensity = RenderSettings.fogDensity;
         defaultSkybox = RenderSettings.skybox;
 
+        postProcess = GetComponent<PostProcessVolume>();
+        ChangeBloom(0.5f);
+       
+    }
+
+    public void ChangeBloom(float newBloomValue)
+    {
+        Bloom bloom;
+        if(postProcess.profile.TryGetSettings(out bloom))
+        {
+            bloom.intensity.value = newBloomValue;
+        }
 
     }
+
+
+    public void ChangeDepthOfField(float val)
+    {
+        DepthOfField depth;
+        if (postProcess.profile.TryGetSettings(out depth))
+        {
+            depth.focusDistance.value = val;  //.intensity.value = newBloomValue;
+        }
+
+    }
+
 
 
     private void OldFogSettings(){
