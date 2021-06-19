@@ -17,12 +17,10 @@ public class SantuaryKeyHolder : MonoBehaviour
     }
 
     public void AddMyBlob(string code, Color color){
-        //Debug.Log(code + ":    " + color);
+        Debug.Log(code + ":    " + color);
         
         myObjectWithSphere.SetActive(true);
-        Material material = myObjectWithSphere.GetComponent<MeshRenderer>().sharedMaterial;
-        myObjectWithSphere.GetComponent<MeshRenderer>().material = new Material(material);
-        myObjectWithSphere.GetComponent<MeshRenderer>().material.SetColor("_BaseColor", color);
+        myObjectWithSphere.GetComponent<ColoredSphere>().UpdateMyColor(color);
 
         myGenerator.AddColor(code);
 

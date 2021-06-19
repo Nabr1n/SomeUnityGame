@@ -54,7 +54,7 @@ public class HandBubble : MonoBehaviour
         }
         
         //Debug.Log(CurrentBlob.MyColorName);
-        mySphere.MyColor = new Color (currentColor.r, currentColor.g, currentColor.b, mySphere.MyColor.a);
+        mySphere.UpdateMyColor(currentColor);
         
     }
 }
