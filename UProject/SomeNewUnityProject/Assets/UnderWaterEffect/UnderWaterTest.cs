@@ -58,6 +58,25 @@ public class UnderWaterTest : MonoBehaviour
 
     }
 
+    public void ChangeAmbientOcclusion(float valAO)
+    {
+        AmbientOcclusion AmbientO;
+        if (postProcess.profile.TryGetSettings(out AmbientO))
+        {
+            AmbientO.intensity.value = valAO;
+        }
+
+    }
+
+    public void ChangeColorGrading(float valCG)
+    {
+        ColorGrading ColorG;
+        if (postProcess.profile.TryGetSettings(out ColorG))
+        {
+            ColorG.temperature.value = valCG;
+        }
+
+    }
 
 
     private void OldFogSettings(){
