@@ -17,10 +17,13 @@ public class GlobalSettings : MonoBehaviour
 
     public List<string> AllBasicColorsToBePlaced = new List<string>();
 
+    public List<GameObject> AllCellsWithBlobsFirstLevel = new List<GameObject>();
+
 
     public SecretColor[] AllSecretColors;
 
     public List<SecretColor> FirstLevelSecrets;
+    public bool FirsLevelGenerated = false;
     public GameObject TipPrefab;
 
     [HideInInspector]public float FloorsSize;
@@ -34,6 +37,13 @@ public class GlobalSettings : MonoBehaviour
         FirstLevelSecrets = GenerateSecrets(FirstLevelSecretsCount);
 
         AllBasicColorsToBePlaced = CalculateAllNeededColors(FirstLevelSecrets);
+        // while(true){
+        //     if(FirsLevelGenerated){
+        //         SpawnColorBlobs(AllBasicColorsToBePlaced, NotSanctuaryFloors);
+        //         break;
+        //         }
+        // }
+        
     }
 
     public List<SecretColor> GenerateSecrets(int Count){
@@ -71,8 +81,25 @@ public class GlobalSettings : MonoBehaviour
     }
 
 
-     private void SpawnColorBlobs(List<string> colors, List<GameObject> floors){
-         
+     public void SpawnColorBlobs(List<string> colors, List<GameObject> floors){
+         List<GameObject> checkedFloors = new List<GameObject>();
+
+         for (int i = 0; i < colors.Count; i++)
+         {
+             while (true){
+                int Randint = Random.Range (0, floors.Count);
+                if (!checkedFloors.Contains(floors[Randint])){
+                    Debug.Log("NEW BLOB, step: " + i + " Randint: " + Randint );
+                    checkedFloors.Add(floors[Randint]);
+                    break;
+                }
+             }
+         }
+        
+        for (int i = 0; i < checkedFloors.Count; i++)
+        {
+            checkedFloors[i].GetComponent<FloorScript>().CheckBlob(true, AllBasicColorsToBePlaced[i]);
+        }
 
 
      }

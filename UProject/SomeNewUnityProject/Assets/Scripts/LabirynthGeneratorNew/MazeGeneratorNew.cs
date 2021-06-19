@@ -104,7 +104,7 @@ public class MazeGeneratorNew
 
     private void PlaceMazeDoors(MazeGeneratorCellNew[,] maze)
     {
-        
+       
     }
 
     private void RemoveWallsWithBackTracker(MazeGeneratorCellNew[,] maze){
@@ -143,12 +143,12 @@ public class MazeGeneratorNew
                 chozen.Visited = true;
                 
                 stack.Push(chozen);
-                // float Rand = UnityEngine.Random.Range(0f, 100f);
-                // if (Rand>=90f) {
-                //     current.ShouldBeWithBlob = true;
-                //     current.RandomBlob();
-                //     CellsWithBlobs.Add(current);
-                // }
+                float Rand = UnityEngine.Random.Range(0f, 100f);
+                if (Rand>=90f) {
+                    current.ShouldBeWithBlob = true;
+                    // current.RandomBlob();
+                    // CellsWithBlobs.Add(current);
+                }
                 LastMoveWasTrue = true;
                 current = chozen;
                 chozen.DistanceFromStart = stack.Count;
@@ -157,8 +157,8 @@ public class MazeGeneratorNew
             else {
                 if(LastMoveWasTrue) 
                 {
-                    // current.ShouldBeWithBlob = true;
-                    // current.RandomBlob();
+                    current.ShouldBeWithBlob = true;
+                    //current.RandomBlob();
                     //CellsWithBlobs.Add(current);
                     LastMoveWasTrue = false;
                     
