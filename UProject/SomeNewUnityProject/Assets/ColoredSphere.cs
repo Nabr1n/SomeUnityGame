@@ -11,7 +11,7 @@ public class ColoredSphere : MonoBehaviour
     // Start is called before the first frame update
     
    
-    [SerializeField] Animation myAnim;
+    
     [SerializeField] GameObject[] GameObjectsToChangeColor;
     private Color MyColor;
 
@@ -21,7 +21,7 @@ public class ColoredSphere : MonoBehaviour
 
     void Start()
     {
-        myAnim.Play();
+        //myAnim.Play();
     }
 
     void Update()

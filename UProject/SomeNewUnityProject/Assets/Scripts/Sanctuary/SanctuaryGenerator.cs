@@ -18,7 +18,13 @@ public class SanctuaryGenerator : MonoBehaviour
 
     [SerializeField] private Animation myAnimation;
 
+    private bool ReadyToGoOut = false;
+
+    [SerializeField] private CapsuleCollider myCharCollider;
+    [SerializeField] private GameObject mySun;
+
     [SerializeField] private GameObject SanctuaryPH;
+    [SerializeField] private Transform playertransformtomove;
     //private GameObject[] PlaceHolders;
     [SerializeField] private float radius = 2f;
     
@@ -28,6 +34,8 @@ public class SanctuaryGenerator : MonoBehaviour
     {
         PlaceHolders();
         GlobalSettings.GameGlobalSettings.SpawnTips();
+        myCharCollider.enabled = false;
+        mySun.SetActive(false);
         
         for (int i = 0; i < GlobalSettings.GameGlobalSettings.FirstLevelSecrets.Count; i++)
         {
@@ -61,6 +69,19 @@ public class SanctuaryGenerator : MonoBehaviour
         }
     }
     
+    void OnTriggerEnter(Collider other)
+    {
+        if(ReadyToGoOut&other.gameObject.CompareTag("Player")){
+            other.gameObject.transform.position = playertransformtomove.position+ new Vector3(0, 0.5f, 0);
+            other.gameObject.GetComponent<PlayerMovement>().enabled = false;
+            myAnimation.Play();
+        }
+    }
+    
+
+
+
+
     public void AddColor(string code){
         bool set = false;
         bool allExist = true;
@@ -92,9 +113,20 @@ public class SanctuaryGenerator : MonoBehaviour
                 break;
             }
         }
-        if(allExist) myAnimation.Play();
+        if(allExist) StartCheckingForExit();
 
     }
+
+
+
+    public void StartCheckingForExit(){
+        myCharCollider.enabled = true;
+        mySun.SetActive(true);
+        ReadyToGoOut = true;
+    }
+
+
+
 
     public void RemoveColor(string code){
         bool removedwithoutlost = false;

@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class BlobPickUpStruct{
-    public string blobkey;
-    public GameObject blob;
-}
+
+
 
 public class FloorScript : MonoBehaviour
 {
@@ -35,7 +32,7 @@ public class FloorScript : MonoBehaviour
 
     public bool bIsSanctuartyCenter;
     [SerializeField] private Transform BlobPlace;
-    [SerializeField] private List<BlobPickUpStruct> blobs;
+    [SerializeField] private GameObject PickUpToInstantiate;
 
     public GameObject BarrierLeft,BarrierBottom;
     
@@ -91,12 +88,8 @@ public class FloorScript : MonoBehaviour
 
     public void CheckBlob(bool ShouldBeWithBlob, string BlobType = "none"){
         if(ShouldBeWithBlob){
-            GameObject NeededBlob = null;
-            for (int i = 0; i < blobs.Count; i++)
-            {
-                if(blobs[i].blobkey == BlobType) NeededBlob = blobs[i].blob;
-            }
-            if(NeededBlob!=null) Instantiate(NeededBlob, BlobPlace);
+            GameObject newBlob = Instantiate(PickUpToInstantiate, BlobPlace);
+            newBlob.GetComponent<BlobPickUp>().OnInstantiate(BlobType);
         }
     }
 

@@ -12,6 +12,10 @@ public class MazeSpawner : MonoBehaviour
     public bool ShouldSanctuaryBeClosed = true;
     public bool WithDelay;
 
+    public int ElevatorShaftLength;
+
+    private GameObject SanctuaryCenter;
+
     [System.Serializable]
     
     public class BlobsDict{
@@ -42,10 +46,15 @@ public class MazeSpawner : MonoBehaviour
                 F.WallLeft.SetActive(maze[w,l].UnbreakableWallLeft?maze[w,l].UnbreakableWallLeft : maze[w,l].WallLeft );
                 F.WallBottom.SetActive(maze[w,l].UnbreakableWallBottom ? maze[w,l].UnbreakableWallBottom : maze[w,l].WallBottom);
                 F.MazeExit = maze[w,l].MazeExit;
-                F.CheckBlob(maze[w,l].ShouldBeWithBlob, maze[w,l].BlobType);
+                //F.CheckBlob(maze[w,l].ShouldBeWithBlob, maze[w,l].BlobType);
                 if ( maze[w,l].AmISanctuaryCenter) F.floortransform.SetActive(false);
+                if(maze[w,l].ShouldBeWithBlob) GlobalSettings.GameGlobalSettings.AllCellsWithBlobsFirstLevel.Add(F.gameObject);
                 F.bIsSanctuartyCenter = maze [w,l].AmISanctuaryCenter;
-                if(maze[w,l].AmISanctuaryCenter) F.PlaceSanctuary();
+                if(maze[w,l].AmISanctuaryCenter) {
+                    F.PlaceSanctuary();
+                    SanctuaryCenter = F.gameObject;
+                }
+
                 if(maze[w,l].AmIInClosedSanctuary && !maze[w,l].AmISanctuaryCenter) {
                     GlobalSettings.GameGlobalSettings.ClosedSanctuaryFloors.Add(F.gameObject);
                     //F.floortransform.SetActive(false);
@@ -54,7 +63,10 @@ public class MazeSpawner : MonoBehaviour
 
                 if(!maze[w,l].AmISanctuary)  GlobalSettings.GameGlobalSettings.NotSanctuaryFloors.Add(F.gameObject);
 
-                
+            
+
+
+
                 // if(maze[w,l].BarrierLeft){
                 //     F.BarrierLeft.SetActive(true);
                 //     F.BarrierLeft.GetComponent<BarrierScript>().myKeyBlob = FindBlobByString(maze[w,l].BarrierLeftObj);
@@ -74,6 +86,25 @@ public class MazeSpawner : MonoBehaviour
             }
         }
 
+        Vector3 startingElevatorplace = SanctuaryCenter.transform.position - new Vector3(0,10f*CellSize, 0);;
+        for (int i = 0; i < ElevatorShaftLength; i++)
+        {
+            Vector3 curentFloorCenterPos = startingElevatorplace - new Vector3(0,10f*CellSize*i,0);
+            
+            GameObject GameObject1 = Instantiate(CellPrefab, curentFloorCenterPos, Quaternion.identity);
+            GameObject GameObject2 = Instantiate(CellPrefab, curentFloorCenterPos + new Vector3(10*CellSize, 0, 0), Quaternion.identity);
+            GameObject GameObject3 = Instantiate(CellPrefab, curentFloorCenterPos + new Vector3(0, 0, 10*CellSize), Quaternion.identity);
+            GameObject1.transform.localScale = new Vector3 (CellSize, CellSize, CellSize);
+            GameObject2.transform.localScale = new Vector3 (CellSize, CellSize, CellSize);
+            GameObject3.transform.localScale = new Vector3 (CellSize, CellSize, CellSize);
+            GameObject1.GetComponent<FloorScript>().floortransform.SetActive(false);
+            GameObject2.GetComponent<FloorScript>().floortransform.SetActive(false);
+            GameObject3.GetComponent<FloorScript>().floortransform.SetActive(false);
+        }
+        
+        yield return new WaitForSeconds (0.5f);
+        GlobalSettings.GameGlobalSettings.SpawnColorBlobs(GlobalSettings.GameGlobalSettings.AllBasicColorsToBePlaced, GlobalSettings.GameGlobalSettings.AllCellsWithBlobsFirstLevel);
+        
         yield return null;
     }
 

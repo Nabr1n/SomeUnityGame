@@ -246,7 +246,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2702893861582064843}
-  - component: {fileID: 2452248311575048690}
   - component: {fileID: 2452248311575048700}
   - component: {fileID: 8602116065589397915}
   m_Layer: 0
@@ -279,23 +278,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &2452248311575048690
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3371308298620802673}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 1827226128182048838, guid: b22581e75b1d0344dadab4c98bb426cc,
-    type: 3}
-  m_Animations:
-  - {fileID: 1827226128182048838, guid: b22581e75b1d0344dadab4c98bb426cc, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &2452248311575048700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,13 +290,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe12ecf54444c2e4db1372b7b8c9120a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myAnim: {fileID: 2452248311575048690}
+  myAnim: {fileID: 0}
   GameObjectsToChangeColor:
   - {fileID: 6639765831860208082}
   - {fileID: 6120117775075586258}
   - {fileID: 2720133849757270643}
   - {fileID: 414449620670106669}
-  MyColor: {r: 0, g: 0.32530314, b: 0.9647059, a: 0.14117648}
   materialToSet: {fileID: 2100000, guid: bae9893e058a4a642a994529d43a8379, type: 2}
 --- !u!95 &8602116065589397915
 Animator:
@@ -326,7 +307,7 @@ Animator:
   m_GameObject: {fileID: 3371308298620802673}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f564098f3859fae4493b7483fb69e958, type: 2}
+  m_Controller: {fileID: 9100000, guid: b4774c770686c6d468679a09f742a774, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

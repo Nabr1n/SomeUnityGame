@@ -258,15 +258,8 @@ MonoBehaviour:
   floortransform: {fileID: 2240143128764129624}
   bIsSanctuartyCenter: 0
   BlobPlace: {fileID: 9173210419415579998}
-  blobs:
-  - blobkey: Red
-    blob: {fileID: 8024658808259293749, guid: b127d782df4a339478e232952675ebe3, type: 3}
-  - blobkey: Green
-    blob: {fileID: 8024658808259293749, guid: cc5e755927ba2a24aae5d62e9d9ff8b4, type: 3}
-  - blobkey: Yellow
-    blob: {fileID: 8024658808259293749, guid: 5151cc7c03f255c4abd5afe14a054729, type: 3}
-  - blobkey: Blue
-    blob: {fileID: 8024658808259293749, guid: f47da7bc723e213498b5527959bf6e8e, type: 3}
+  PickUpToInstantiate: {fileID: 8024658808259293749, guid: f47da7bc723e213498b5527959bf6e8e,
+    type: 3}
   BarrierLeft: {fileID: 0}
   BarrierBottom: {fileID: 0}
   MazeExit: 0
@@ -475,7 +468,7 @@ Transform:
   m_GameObject: {fileID: 8918579889320049517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 8.02, z: 0}
-  m_LocalScale: {x: 10, y: 0.16671269, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4356439978961893921}
   m_Father: {fileID: 6522711325863730408}
