@@ -13,7 +13,9 @@ public class ColoredSphere : MonoBehaviour
    
     [SerializeField] Animation myAnim;
     [SerializeField] GameObject[] GameObjectsToChangeColor;
-    public Color MyColor;
+    private Color MyColor;
+
+    public const float ColorAlpha = 0.1411765f;
     [SerializeField] Material materialToSet;
 
 
@@ -33,6 +35,10 @@ public class ColoredSphere : MonoBehaviour
         }
     }
 
-    
+    public void UpdateMyColor(Color newColor){
+
+        MyColor = new Color (newColor.r, newColor.g, newColor.b, ColorAlpha);
+
+    }
 
 }
