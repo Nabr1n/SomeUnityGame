@@ -6,16 +6,17 @@ public class HandBubble : MonoBehaviour
 {
     // Start is called before the first frame update
     public BlobObject CurrentBlob;
-    private MeshRenderer myRend;
+    private ColoredSphere mySphere;
     public GameObject sphere;
 
     private GameObject Player;
     private ColorBubbleInventory myInv;
+    private Color currentColor;
 
     public string mySide;
 
     private void Start() {
-        myRend = sphere.GetComponent<MeshRenderer>();
+        mySphere = sphere.GetComponent<ColoredSphere>();
         
 
         Player = GameObject.FindWithTag("Player");
@@ -31,7 +32,7 @@ public class HandBubble : MonoBehaviour
         switch (mySide){
             case ("Left"):
             if(myInv.leftArmObj!=-1) {
-                CurrentBlob = myInv.Inventory[myInv.leftArmObj].Object;
+                currentColor = myInv.Inventory[myInv.leftArmObj].Object.MyColor;
                 sphere.SetActive(true);
             }
             else {
@@ -42,7 +43,7 @@ public class HandBubble : MonoBehaviour
 
             case "Right":
              if(myInv.RightArmObj!=-1) {
-                CurrentBlob = myInv.Inventory[myInv.RightArmObj].Object;
+                currentColor = myInv.Inventory[myInv.RightArmObj].Object.MyColor;
                 sphere.SetActive(true);
              }
              else{
@@ -53,6 +54,7 @@ public class HandBubble : MonoBehaviour
         }
         
         //Debug.Log(CurrentBlob.MyColorName);
-        myRend.material = CurrentBlob.myMaterial;
+        mySphere.MyColor = new Color (currentColor.r, currentColor.g, currentColor.b, mySphere.MyColor.a);
+        
     }
 }

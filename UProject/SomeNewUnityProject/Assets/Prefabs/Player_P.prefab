@@ -431,11 +431,11 @@ MonoBehaviour:
     Count: 0
   - Object: {fileID: 11400000, guid: f801a3257b8ee7942bd9b7971cb1a5b8, type: 2}
     Count: 0
-  - Object: {fileID: 11400000, guid: 8c88398af0fc4a649b910556ff73658c, type: 2}
-    Count: 0
   - Object: {fileID: 11400000, guid: b2e77c04cce810d4ebc9ec00cc8e9fb1, type: 2}
     Count: 0
   TipsInventory: []
+  CodeList: []
+  myActivatedColor: 
   LeftArm: {fileID: 5691792043895100835}
   RightArm: {fileID: 3066414055752250107}
   leftArmObj: 0

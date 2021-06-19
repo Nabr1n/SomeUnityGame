@@ -170,7 +170,7 @@ public class ColorBubbleInventory : MonoBehaviour
                 if (LMBcurrent >= LMBMax/2 && LMBcurrent < LMBMax)
                 {
                 
-                SwitchBubble2("Left");
+                    SwitchBubble2("Left");
                 
                 LMBcurrent = 0;
                 //действие 1
@@ -186,9 +186,9 @@ public class ColorBubbleInventory : MonoBehaviour
             case "Right":
                 if (RMBcurrent >= RMBMax/2 && RMBcurrent < RMBMax)
                 {
-                SwitchBubble2("Right");
-                RMBcurrent = 0;
-                //действие 1
+                    SwitchBubble2("Right");
+                    RMBcurrent = 0;
+                
 
                 }
                 else if(RMBcurrent >= RMBMax){
@@ -235,6 +235,30 @@ public class ColorBubbleInventory : MonoBehaviour
         break;
         }
         }
+        else{
+            switch (Side){
+        case ("Left"):
+            
+            
+            LMBcurrent = 0;
+        break;
+
+
+        case ("Right"):
+            
+            
+            RMBcurrent = 0;
+        break;
+
+
+        case ("Both"):
+           
+            
+            LMBcurrent = 0;
+            RMBcurrent = 0;
+        break;
+        }
+    }
     }
 
     private void RemoveBlob(string Side){
@@ -383,43 +407,77 @@ public class ColorBubbleInventory : MonoBehaviour
         }
     }
 
+    private void FindUnassignedColor(string Hand){
+        switch (Hand){
+            case ("Left"):
+            for (int i = 0; i < Inventory.Count; i++)
+            {
+                if(Inventory[i].Count > 0 && RightArmObj != i){
+                    leftArmObj = i;
+                    break;
+                }
+            }
+            break;
 
+            case("Right"):
+
+            for (int i = 0; i < Inventory.Count; i++)
+            {
+                if(Inventory[i].Count > 0 && leftArmObj != i){
+                    RightArmObj = i;
+                    break;
+                }
+            }
+
+            break;
+        }
+    }
 
     private void SwitchBubble2(string Hand){
         bool exist = false;
         
         switch (Hand){
             case "Left":
-
+            if(leftArmObj!=-1){
             for (int i = 0; i < Inventory.Count; i++)
             {
-                int selected = (i + 1 + leftArmObj)%Inventory.Count;
+                int selected = (i  + 1 +leftArmObj)%Inventory.Count;
                 if(Inventory[selected].Count>0&&selected != RightArmObj){
                     leftArmObj = selected;
                     exist = true;
+                    break;
                 }
             }
             if (!exist) {
                 leftArmObj = -1;
                 //Debug.Log("REMOVEDLeft");
                 }
+            }
+            else FindUnassignedColor("Left");
             break;
 
             case "Right":
+             
+             
+            if(RightArmObj != -1 ){
+
              for (int i = 0; i < Inventory.Count; i++)
-            {
-                int selected = (i + 1 + RightArmObj)%Inventory.Count;
-                if(Inventory[selected].Count>0&&selected != leftArmObj){
-                    RightArmObj = selected;
-                    exist = true;
+                {
+                    int selected = (i  + 1 + RightArmObj)%(Inventory.Count);
+                    Debug.Log(selected + ". RightArmObj = " + RightArmObj + ".  All count = " + Inventory.Count + " i = " + i );
+                    if(Inventory[selected].Count>0&&selected != leftArmObj){
+                        RightArmObj = selected;
+                        exist = true;
+                        break;
+                    }
                 }
-            }
             if (!exist){
                 RightArmObj = -1;
                 //Debug.Log("REMOVEDRIGHT");
             }
             //Debug.Log(RightArmObj);
-            
+            }
+            else FindUnassignedColor("Right");
             break;
         }
     }
@@ -455,9 +513,7 @@ public class ColorBubbleInventory : MonoBehaviour
         }
     }
 
-    private void FindAnassignedColor(string Side){
-
-    }
+    
 
 
     private void Update() {
