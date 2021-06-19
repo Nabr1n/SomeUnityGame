@@ -14,6 +14,8 @@ public class FloorScript : MonoBehaviour
 
     [SerializeField] float MinRocksScale, MaxRockScale;
 
+    public GameObject Celling;
+
 
    
     public GameObject WallLeft;
