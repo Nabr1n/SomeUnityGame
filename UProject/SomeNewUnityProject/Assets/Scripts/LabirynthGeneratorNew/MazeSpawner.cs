@@ -8,14 +8,14 @@ public class MazeSpawner : MonoBehaviour
     [SerializeField] GameObject CellPrefabSecondLevel;
     public float CellSize;
 
-    public int MazeWidth, MazeLength, SanctuarySideLength, ClosedSanctuarySideLen;
+    public int MazeWidth1, MazeLength1, SanctuarySideLength1, ClosedSanctuarySideLen1, MazeWidth2, MazeLength2, SanctuarySideLength2, ClosedSanctuarySideLen2;
     private MazeGeneratorCellNew[,] maze, secondmaze;
     public bool ShouldSanctuaryBeClosed = true;
     public bool WithDelay;
 
     public int ElevatorShaftLength;
 
-    private GameObject SanctuaryCenter;
+    private GameObject SanctuaryCenter1,SanctuaryCenter2;
 
     [System.Serializable]
     
@@ -30,8 +30,8 @@ public class MazeSpawner : MonoBehaviour
     void Start()
     {
         MazeGeneratorNew generator = new MazeGeneratorNew();
-        maze = generator.GenerateNewMaze(MazeWidth, MazeLength, SanctuarySideLength, ShouldSanctuaryBeClosed, ClosedSanctuarySideLen);
-        secondmaze = generator.GenerateNewMaze(MazeWidth, MazeLength, SanctuarySideLength, ShouldSanctuaryBeClosed, ClosedSanctuarySideLen);
+        maze = generator.GenerateNewMaze(MazeWidth1, MazeLength1, SanctuarySideLength1, ShouldSanctuaryBeClosed, ClosedSanctuarySideLen1);
+        secondmaze = generator.GenerateNewMaze(MazeWidth2, MazeLength2, SanctuarySideLength2, ShouldSanctuaryBeClosed, ClosedSanctuarySideLen2);
         StartCoroutine(SpawnMaze());    
 
         GlobalSettings.GameGlobalSettings.FloorsSize = 10*CellSize;
@@ -46,24 +46,27 @@ public class MazeSpawner : MonoBehaviour
                 F.transform.localScale = new Vector3 (CellSize, CellSize, CellSize);
                 if(w==0&&l==0&&GameObject.FindWithTag("Player")!=null) GameObject.FindWithTag("Player").transform.position = F.transform.position;
                 F.WallLeft.SetActive(maze[w,l].UnbreakableWallLeft?maze[w,l].UnbreakableWallLeft : maze[w,l].WallLeft );
+
+                //F.myLevel = 1;
                 F.WallBottom.SetActive(maze[w,l].UnbreakableWallBottom ? maze[w,l].UnbreakableWallBottom : maze[w,l].WallBottom);
                 F.MazeExit = maze[w,l].MazeExit;
+                
                 //F.CheckBlob(maze[w,l].ShouldBeWithBlob, maze[w,l].BlobType);
                 if ( maze[w,l].AmISanctuaryCenter) F.floortransform.SetActive(false);
                 if(maze[w,l].ShouldBeWithBlob) GlobalSettings.GameGlobalSettings.AllCellsWithBlobsFirstLevel.Add(F.gameObject);
                 F.bIsSanctuartyCenter = maze [w,l].AmISanctuaryCenter;
                 if(maze[w,l].AmISanctuaryCenter) {
-                    F.PlaceSanctuary();
-                    SanctuaryCenter = F.gameObject;
+                    F.PlaceSanctuary(1);
+                    SanctuaryCenter1 = F.gameObject;
                 }
 
                 if(maze[w,l].AmIInClosedSanctuary && !maze[w,l].AmISanctuaryCenter) {
-                    GlobalSettings.GameGlobalSettings.ClosedSanctuaryFloors.Add(F.gameObject);
+                    GlobalSettings.GameGlobalSettings.ClosedSanctuaryFloors1.Add(F.gameObject);
                     //F.floortransform.SetActive(false);
                 }
-                if(maze[w,l].AmISanctuary) GlobalSettings.GameGlobalSettings.SanctuaryFloors.Add(F.gameObject);
+                if(maze[w,l].AmISanctuary) GlobalSettings.GameGlobalSettings.SanctuaryFloors1.Add(F.gameObject);
 
-                if(!maze[w,l].AmISanctuary)  GlobalSettings.GameGlobalSettings.NotSanctuaryFloors.Add(F.gameObject);
+                if(!maze[w,l].AmISanctuary)  GlobalSettings.GameGlobalSettings.NotSanctuaryFloors1.Add(F.gameObject);
 
             
 
@@ -87,8 +90,8 @@ public class MazeSpawner : MonoBehaviour
                 
             }
         }
-        Vector3 newMazeStartingPoint= SanctuaryCenter.transform.position - new Vector3(0,10f*CellSize, 0);
-        Vector3 startingElevatorplace = SanctuaryCenter.transform.position - new Vector3(0,10f*CellSize, 0);
+        Vector3 newMazeStartingPoint= SanctuaryCenter1.transform.position - new Vector3(0,10f*CellSize, 0);
+        Vector3 startingElevatorplace = SanctuaryCenter1.transform.position - new Vector3(0,10f*CellSize, 0);
         for (int i = 0; i < ElevatorShaftLength; i++)
         {
             Vector3 curentFloorCenterPos = startingElevatorplace - new Vector3(0,10f*CellSize*i,0);
@@ -107,33 +110,35 @@ public class MazeSpawner : MonoBehaviour
         
         newMazeStartingPoint -= new Vector3 (0, 10f*CellSize, 0);
         
-        for (int w = 0; w < maze.GetLength(0); w++)
+        for (int w = 0; w < secondmaze.GetLength(0); w++)
         {
             for (int l = 0; l < secondmaze.GetLength(1); l++)
             {
                 FloorScript F = Instantiate(CellPrefabSecondLevel, newMazeStartingPoint + new Vector3(w*10*CellSize,0,l*10*CellSize),Quaternion.identity).GetComponent<FloorScript>();
                 if (w == 0 && l == 0) F.Celling.SetActive(false);
                 F.transform.localScale = new Vector3 (CellSize, CellSize, CellSize);
+                
                 //if(w==0&&l==0&&GameObject.FindWithTag("Player")!=null) GameObject.FindWithTag("Player").transform.position = F.transform.position;
                 F.WallLeft.SetActive(secondmaze[w,l].UnbreakableWallLeft?secondmaze[w,l].UnbreakableWallLeft : secondmaze[w,l].WallLeft );
                 F.WallBottom.SetActive(secondmaze[w,l].UnbreakableWallBottom ? secondmaze[w,l].UnbreakableWallBottom : secondmaze[w,l].WallBottom);
                 F.MazeExit = secondmaze[w,l].MazeExit;
+                //F.myLevel = 2;
                 //F.CheckBlob(maze[w,l].ShouldBeWithBlob, maze[w,l].BlobType);
                 if ( secondmaze[w,l].AmISanctuaryCenter) F.floortransform.SetActive(false);
-                //if(secondmaze[w,l].ShouldBeWithBlob) GlobalSettings.GameGlobalSettings.AllCellsWithBlobsFirstLevel.Add(F.gameObject);
+                if(secondmaze[w,l].ShouldBeWithBlob) GlobalSettings.GameGlobalSettings.AllCellsWithBlobsSecondLevel.Add(F.gameObject);
                 F.bIsSanctuartyCenter = secondmaze [w,l].AmISanctuaryCenter;
                 if(secondmaze[w,l].AmISanctuaryCenter) {
-                    F.PlaceSanctuary();
-                    SanctuaryCenter = F.gameObject;
+                    F.PlaceSanctuary(2);
+                    SanctuaryCenter2 = F.gameObject;
                 }
 
                 if(secondmaze[w,l].AmIInClosedSanctuary && !secondmaze[w,l].AmISanctuaryCenter) {
-                    //GlobalSettings.GameGlobalSettings.ClosedSanctuaryFloors.Add(F.gameObject);
+                    GlobalSettings.GameGlobalSettings.ClosedSanctuaryFloors2.Add(F.gameObject);
                     //F.floortransform.SetActive(false);
                 }
-                //if(secondmaze[w,l].AmISanctuary) GlobalSettings.GameGlobalSettings.SanctuaryFloors.Add(F.gameObject);
+                if(secondmaze[w,l].AmISanctuary) GlobalSettings.GameGlobalSettings.SanctuaryFloors2.Add(F.gameObject);
 
-                //if(!secondmaze[w,l].AmISanctuary)  GlobalSettings.GameGlobalSettings.NotSanctuaryFloors.Add(F.gameObject);
+                if(!secondmaze[w,l].AmISanctuary)  GlobalSettings.GameGlobalSettings.NotSanctuaryFloors2.Add(F.gameObject);
 
             
 
@@ -162,7 +167,7 @@ public class MazeSpawner : MonoBehaviour
 
 
         yield return new WaitForSeconds (0.5f);
-        GlobalSettings.GameGlobalSettings.SpawnColorBlobs(GlobalSettings.GameGlobalSettings.AllBasicColorsToBePlaced, GlobalSettings.GameGlobalSettings.AllCellsWithBlobsFirstLevel);
+        GlobalSettings.GameGlobalSettings.SpawnColorBlobs(GlobalSettings.GameGlobalSettings.AllBasicColorsToBePlaced1, GlobalSettings.GameGlobalSettings.AllCellsWithBlobsFirstLevel);
         
         yield return null;
     }

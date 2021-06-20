@@ -15,7 +15,9 @@ public class SanctuaryGenerator : MonoBehaviour
             Exist = exist;
         }
     }
-
+    public int MyLevel;
+    public GameObject ObjectToMoveWithPlayer;
+    public bool StartMoving;
     [SerializeField] private Animation myAnimation;
 
     private bool ReadyToGoOut = false;
@@ -24,29 +26,47 @@ public class SanctuaryGenerator : MonoBehaviour
     [SerializeField] private GameObject mySun;
 
     [SerializeField] private GameObject SanctuaryPH;
+    private Vector3 placeToMove;
     [SerializeField] private Transform playertransformtomove;
     //private GameObject[] PlaceHolders;
     [SerializeField] private float radius = 2f;
     
     [SerializeField] private List<CheckedSecret> SecretsCheck = new List<CheckedSecret>();
 
-    private void Start()
+    public void OnMySpawn(int Level)
     {
+        MyLevel = Level;
         PlaceHolders();
-        GlobalSettings.GameGlobalSettings.SpawnTips();
+        Debug.Log(Level);
+        GlobalSettings.GameGlobalSettings.SpawnTips(Level);
         myCharCollider.enabled = false;
         mySun.SetActive(false);
-        
-        for (int i = 0; i < GlobalSettings.GameGlobalSettings.FirstLevelSecrets.Count; i++)
-        {
-            SecretsCheck.Add(new CheckedSecret(GlobalSettings.GameGlobalSettings.FirstLevelSecrets[i].ColorString, false));
+        if(Level == 1){
+            for (int i = 0; i < GlobalSettings.GameGlobalSettings.FirstLevelSecrets.Count; i++)
+            {
+                SecretsCheck.Add(new CheckedSecret(GlobalSettings.GameGlobalSettings.FirstLevelSecrets[i].ColorString, false));
+            }
+        }
+        else if(Level == 2){
+            for (int i = 0; i < GlobalSettings.GameGlobalSettings.SecondLevelSecrets.Count; i++)
+            {
+                SecretsCheck.Add(new CheckedSecret(GlobalSettings.GameGlobalSettings.SecondLevelSecrets[i].ColorString, false));
+            }   
         }
     }
 
 
     private void PlaceHolders(){
         
-        int count = GlobalSettings.GameGlobalSettings.FirstLevelSecretsCount;
+        int count = 1;
+        switch(MyLevel){
+            case(1):
+            count = GlobalSettings.GameGlobalSettings.FirstLevelSecretsCount;
+            break;
+            case 2:
+            count = GlobalSettings.GameGlobalSettings.SecondLevelSecretsCount;
+            break;
+        } 
         float current_angle = 0f;
         float additional_angle = 360f/(count*1f);
 
@@ -60,7 +80,15 @@ public class SanctuaryGenerator : MonoBehaviour
 
             GameObject newPH = Instantiate(SanctuaryPH, new Vector3(x, gameObject.transform.position.y, z), Quaternion.identity);
             newPH.transform.LookAt(this.gameObject.transform);
-            newPH.GetComponent<SantuaryKeyHolder>().mySecret = GlobalSettings.GameGlobalSettings.FirstLevelSecrets[i];
+            switch (MyLevel){
+                case 1:
+                newPH.GetComponent<SantuaryKeyHolder>().mySecret = GlobalSettings.GameGlobalSettings.FirstLevelSecrets[i];
+                break;
+                case 2:
+                newPH.GetComponent<SantuaryKeyHolder>().mySecret = GlobalSettings.GameGlobalSettings.SecondLevelSecrets[i];
+                break;
+            }
+            
             newPH.GetComponent<SantuaryKeyHolder>().myGenerator = this;
             
             //Debug.Log (GlobalSettings.GameGlobalSettings.FirstLevelSecrets[i]);
@@ -74,12 +102,25 @@ public class SanctuaryGenerator : MonoBehaviour
         if(ReadyToGoOut&other.gameObject.CompareTag("Player")){
             other.gameObject.transform.position = playertransformtomove.position+ new Vector3(0, 0.5f, 0);
             other.gameObject.GetComponent<PlayerMovement>().enabled = false;
+            other.gameObject.transform.parent = ObjectToMoveWithPlayer.transform;
             myAnimation.Play();
+           
         }
     }
     
 
-
+    void Update()
+    {
+        if(StartMoving){
+            ObjectToMoveWithPlayer.transform.position -= new Vector3 (0, 1f * Time.deltaTime, 0);
+            RaycastHit hit;
+            Physics.Raycast(ObjectToMoveWithPlayer.transform.position + new Vector3(0, -1.3f, 0), new Vector3(0,-1, 0),  out hit);
+            if(hit.distance<0.05f){
+                GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = true;
+                StartMoving = false;
+            }
+        }
+    }
 
 
     public void AddColor(string code){

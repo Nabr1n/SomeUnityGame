@@ -6,6 +6,7 @@ public class SanctuaryTip : MonoBehaviour
 {
     public GameObject myHolder;
     public SecretColor mySecret;
+    public int MyLevel;
 
     public void SetMySecret(SecretColor mysecret){
         mySecret = mysecret;

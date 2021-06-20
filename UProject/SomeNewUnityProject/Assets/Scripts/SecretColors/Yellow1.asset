@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c13db652acec6b54ba7ee90e12c0df91, type: 3}
-  m_Name: Blue
+  m_Name: Yellow1
   m_EditorClassIdentifier: 
-  MyTip: "\u0421\u0418\u041D\u0418\u0419"
-  ColorString: Blue
-  MyColor: {r: 0, g: 0, b: 1, a: 1}
-  myTexture: {fileID: 8400000, guid: 0e3f29162389ece4cb9edae170186c67, type: 2}
-  Mesh: {fileID: 919132149155446097, guid: 28c021bde1a6711459b6eabdb794785b, type: 3}
+  MyTip: "\u0416\u041E\u041E\u041B\u0422\u042B\u0419"
+  ColorString: Yellow
+  MyColor: {r: 1, g: 1, b: 0, a: 1}
+  myTexture: {fileID: 8400000, guid: 5b7b34e0e3e68b44e803a47122d55a21, type: 2}
+  Mesh: {fileID: 919132149155446097, guid: 0aed92bc52a0aac4f9b412f5aba510bc, type: 3}

@@ -16,7 +16,7 @@ public class FloorScript : MonoBehaviour
 
     public GameObject Celling;
 
-
+    //public int myLevel;
    
     public GameObject WallLeft;
     
@@ -51,8 +51,10 @@ public class FloorScript : MonoBehaviour
         //BottomWallMesh.transform.localScale = 
     }
 
-    public void PlaceSanctuary(){
-        Instantiate (Sanctuary, SanctuaryHolder.transform);
+    public void PlaceSanctuary(int Level){
+        SanctuaryGenerator generator = Instantiate (Sanctuary, SanctuaryHolder.transform).GetComponent<SanctuaryGenerator>() ;
+        generator.MyLevel = Level;
+        generator.OnMySpawn(Level);
     }
 
     private void SpawnRocks(){
@@ -72,7 +74,7 @@ public class FloorScript : MonoBehaviour
         }
     }
 
-
+    
 
     [HideInInspector] public bool MazeExit;
 

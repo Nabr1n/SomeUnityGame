@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c13db652acec6b54ba7ee90e12c0df91, type: 3}
-  m_Name: Yellow
-  m_EditorClassIdentifier: 
-  MyTip: "\u0416\u041E\u041E\u041B\u0422\u042B\u0419"
-  ColorString: Yellow
-  MyColor: {r: 1, g: 1, b: 0, a: 1}
-  myTexture: {fileID: 8400000, guid: 5b7b34e0e3e68b44e803a47122d55a21, type: 2}
+  m_Name: Purple1
+  m_EditorClassIdentifier: Assembly-CSharp::SecretColor
+  MyTip: "\u0424\u0418\u0410\u041B\u0415\u0422\u0410\u0412\u042B\u0419"
+  ColorString: Purple
+  MyColor: {r: 1, g: 0, b: 1, a: 1}
+  myTexture: {fileID: 8400000, guid: 8cc7c2bb515e08a4cbc8f87eea0ca1b4, type: 2}
   Mesh: {fileID: 919132149155446097, guid: a4ebb969fb4b64445851c3d4171a4450, type: 3}

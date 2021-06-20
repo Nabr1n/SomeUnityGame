@@ -5,7 +5,7 @@ using UnityEngine;
 public class OutlineVisibilityManager : MonoBehaviour
 {
     public GameObject myOutlineObject;
-
+    
 
 
     private void Start() {
