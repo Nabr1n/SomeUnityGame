@@ -7,6 +7,7 @@ TagManager:
   - Sanctuary
   - SanctuarySlot
   - SanctuaryTip
+  - DirectionalLight
   layers:
   - Default
   - TransparentFX

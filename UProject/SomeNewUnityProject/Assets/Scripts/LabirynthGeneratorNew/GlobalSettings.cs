@@ -12,6 +12,7 @@ public class GlobalSettings : MonoBehaviour
     public List<GameObject> NotSanctuaryFloors1, NotSanctuaryFloors2 = new List<GameObject>();
 
     public static GlobalSettings GameGlobalSettings;
+    public GameObject MainLight;
 
     private ColorMath myColorMath = new ColorMath();
 
@@ -167,7 +168,7 @@ public class GlobalSettings : MonoBehaviour
 
                 float randX = Random.Range(-1*(FloorsSize-(FloorsSize*0.1f)), FloorsSize-(FloorsSize*0.1f)) / 2f;
                 float randZ = Random.Range(-1*(FloorsSize-(FloorsSize*0.1f)), FloorsSize-(FloorsSize*0.1f)) / 2f;
-                SanctuaryTip NewTip = Instantiate (TipPrefab, hit.transform.position + new Vector3(randX, 0, randZ), Quaternion.identity).GetComponent<SanctuaryTip>();
+                SanctuaryTip NewTip = Instantiate (TipPrefab, hit.transform.position + new Vector3(randX, 1, randZ), Quaternion.identity).GetComponent<SanctuaryTip>();
                 Debug.DrawRay (ClosedSanctuaryFloors2[floorindex].transform.position + new Vector3 (0, 3f, 0) + new Vector3(randX, 0, randZ), new Vector3 (0,-50f, 0), Color.red, 150f);
             }
             
@@ -198,7 +199,9 @@ public class GlobalSettings : MonoBehaviour
                         
                         float randX = Random.Range(-1*(FloorsSize-(FloorsSize*0.1f)), FloorsSize-(FloorsSize*0.1f)) / 2f;
                         float randZ = Random.Range(-1*(FloorsSize-(FloorsSize*0.1f)), FloorsSize-(FloorsSize*0.1f)) / 2f;
-                        T = Instantiate (TipPrefab, hit.transform.position + new Vector3(randX, 0, randZ), Quaternion.identity);
+                        T = Instantiate (TipPrefab, hit.transform.position + new Vector3(randX, 2f, randZ), Quaternion.identity);
+                        T.transform.RotateAround(T.transform.position, new Vector3(0,0,1), Random.Range(0, 360f));
+
                         T.GetComponent<SanctuaryTip>().SetMySecret(FirstLevelSecrets[i]);
                         T.GetComponent<SanctuaryTip>().MyLevel = 1;
                         Debug.DrawRay (SanctuaryFloors1[floorindex].transform.position + new Vector3 (0, 3f, 0) + new Vector3(randX, 0, randZ), new Vector3 (0,-50f, 0), Color.red, 150f);
@@ -222,7 +225,7 @@ public class GlobalSettings : MonoBehaviour
 
                         float randX = Random.Range(-1*(FloorsSize-(FloorsSize*0.1f)), FloorsSize-(FloorsSize*0.1f)) / 2f;
                         float randZ = Random.Range(-1*(FloorsSize-(FloorsSize*0.1f)), FloorsSize-(FloorsSize*0.1f)) / 2f;
-                        T = Instantiate (TipPrefab, hit.transform.position + new Vector3(randX, 0, randZ), Quaternion.identity);
+                        T = Instantiate (TipPrefab, hit.transform.position + new Vector3(randX, 2f, randZ), Quaternion.identity);
                         T.GetComponent<SanctuaryTip>().SetMySecret(SecondLevelSecrets[i]);
                         T.GetComponent<SanctuaryTip>().MyLevel = 2;
                         Debug.DrawRay (SanctuaryFloors2[floorindex].transform.position + new Vector3 (0, 0.1f, 0) + new Vector3(randX, 0, randZ), new Vector3 (0,-50f, 0), Color.red, 150f);

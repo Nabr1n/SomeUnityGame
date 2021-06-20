@@ -719,6 +719,7 @@ MonoBehaviour:
   SanctuaryFloors2: []
   NotSanctuaryFloors1: []
   NotSanctuaryFloors2: []
+  MainLight: {fileID: 630731368}
   AllBasicColorsToBePlaced1: []
   AllBasicColorsToBePlaced2: []
   AllCellsWithBlobsFirstLevel: []
@@ -844,7 +845,7 @@ GameObject:
   - component: {fileID: 630731369}
   m_Layer: 0
   m_Name: Directional Light
-  m_TagString: Untagged
+  m_TagString: DirectionalLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

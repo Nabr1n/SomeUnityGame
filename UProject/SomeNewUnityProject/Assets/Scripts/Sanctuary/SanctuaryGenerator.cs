@@ -19,7 +19,7 @@ public class SanctuaryGenerator : MonoBehaviour
     public GameObject ObjectToMoveWithPlayer;
     public bool StartMoving;
     [SerializeField] private Animation myAnimation;
-
+    public GameObject MyDirectionalLight;
     private bool ReadyToGoOut = false;
 
     [SerializeField] private CapsuleCollider myCharCollider;
@@ -117,6 +117,7 @@ public class SanctuaryGenerator : MonoBehaviour
             Physics.Raycast(ObjectToMoveWithPlayer.transform.position + new Vector3(0, -1.3f, 0), new Vector3(0,-1, 0),  out hit);
             if(hit.distance<0.05f){
                 GameObject.FindWithTag("Player").GetComponent<PlayerMovement>().enabled = true;
+                MyDirectionalLight.SetActive(false);
                 StartMoving = false;
             }
         }
@@ -157,7 +158,10 @@ public class SanctuaryGenerator : MonoBehaviour
         if(allExist) StartCheckingForExit();
 
     }
-
+    void Start()
+    {
+        MyDirectionalLight = GlobalSettings.GameGlobalSettings.MainLight;
+    }
 
 
     public void StartCheckingForExit(){
