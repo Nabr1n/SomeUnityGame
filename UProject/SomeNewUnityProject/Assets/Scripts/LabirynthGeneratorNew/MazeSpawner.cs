@@ -68,6 +68,7 @@ public class MazeSpawner : MonoBehaviour
 
                 if(!maze[w,l].AmISanctuary)  GlobalSettings.GameGlobalSettings.NotSanctuaryFloors1.Add(F.gameObject);
 
+                F.AmIInClosedSanctuary = maze[w,l].AmIInClosedSanctuary || maze[w,l].AmISanctuaryCenter;
             
 
 
@@ -84,7 +85,7 @@ public class MazeSpawner : MonoBehaviour
                 // }
                 // else F.BarrierBottom.SetActive(false);
 
-                
+                F.OnMyStart();
                 //F.CheckBlob(false, "Green");
                 if(WithDelay) yield return null;
                 
@@ -140,7 +141,7 @@ public class MazeSpawner : MonoBehaviour
 
                 if(!secondmaze[w,l].AmISanctuary)  GlobalSettings.GameGlobalSettings.NotSanctuaryFloors2.Add(F.gameObject);
 
-            
+                F.AmIInClosedSanctuary = maze[w,l].AmIInClosedSanctuary || maze[w,l].AmISanctuaryCenter;
 
 
 
@@ -156,7 +157,7 @@ public class MazeSpawner : MonoBehaviour
                 // }
                 // else F.BarrierBottom.SetActive(false);
 
-                
+                F.OnMyStart();
                 //F.CheckBlob(false, "Green");
                 if(WithDelay) yield return null;
                 
