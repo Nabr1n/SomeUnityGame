@@ -10,7 +10,7 @@ public class FloorScript : MonoBehaviour
     // Start is called before the first frame update
     [HideInInspector] public bool AmIMainRoad;
     [SerializeField] private GameObject[] Rocks, FloorDecor, WallDecor, FloorDecorBig;
-    [SerializeField] int MaxRockCount, MinRockCount, MinFloorBigCount, MaxFloorBigCount, MinFloorSmallCount, MaxFloorSmallCount;
+    [SerializeField] int MaxRockCount, MinRockCount, MinFloorBigCount, MaxFloorBigCount, MinFloorSmallCount, MaxFloorSmallCount, MinWallDecorCount, MaxWallDecorCount;
 
     [SerializeField] float MinRocksScale, MaxRockScale, MinWallDecorScale, MaxWallDecorScale, MinFloorDecorScale, MaxFloorDecorScale, MinFloorDecorBigScale, MaxFloorDecorBigScale;
 
@@ -25,7 +25,7 @@ public class FloorScript : MonoBehaviour
 
     public GameObject Floor;
 
-    [SerializeField] Transform[] FloorDecorPlacementBig, FloorDecorPlacementSmall;
+    [SerializeField] Transform[] FloorDecorPlacementBig, FloorDecorPlacementSmall, WallDecorPlacement;
     
     [SerializeField] private GameObject[] Floors;
     [SerializeField] private GameObject[] Walls;
@@ -78,7 +78,7 @@ public class FloorScript : MonoBehaviour
         }
     }
 
-    private void PlaceFloorDecor(GameObject[] objects, Transform[] transforms, float Minscale, float MaxScale, int count){
+    private void PlaceFloorDecor(GameObject[] objects, Transform[] transforms, float Minscale, float MaxScale, int count, bool ShouldRotateOnTransform){
         Debug.Log("Spawnin1");
         List<GameObject> LockedObjects = new List<GameObject>();
         List<Transform> lockedTransforms = new List<Transform>();
@@ -101,14 +101,14 @@ public class FloorScript : MonoBehaviour
             }
              while (true){
                 int Randint = Random.Range(0, transforms.Length);
-                if(!lockedTransforms.Contains(transforms[Randint])){
+                if(!lockedTransforms.Contains(transforms[Randint]) && transforms[Randint].parent.gameObject.activeSelf){
                     currentTransform = transforms[Randint];
                     lockedTransforms.Add(currentTransform);
                     break;
 
                 }
             }
-            GameObject G = Instantiate (currentGameObjectToInstantiate, currentTransform.position, Quaternion.identity);
+            GameObject G = Instantiate (currentGameObjectToInstantiate, currentTransform.position, ShouldRotateOnTransform? currentTransform.rotation : Quaternion.identity);
             float scale = Random.Range(Minscale, MaxScale);
             G.transform.localScale = new Vector3(scale, scale, scale);
 
@@ -146,9 +146,11 @@ public class FloorScript : MonoBehaviour
         PickRandomFloor();
         SetWalls();
         SpawnRocks();
-        if(!AmIInClosedSanctuary){
-        PlaceFloorDecor(FloorDecorBig, FloorDecorPlacementBig,MinFloorDecorBigScale, MaxFloorDecorBigScale,Random.Range(MinFloorBigCount, MaxFloorBigCount));
-        PlaceFloorDecor(FloorDecor, FloorDecorPlacementSmall,MinFloorDecorScale, MaxFloorDecorScale, Random.Range(MinFloorSmallCount, MaxFloorSmallCount));
+        if(!AmIInClosedSanctuary)
+        {
+        PlaceFloorDecor(FloorDecorBig, FloorDecorPlacementBig,MinFloorDecorBigScale, MaxFloorDecorBigScale,Random.Range(MinFloorBigCount, MaxFloorBigCount), false);
+        PlaceFloorDecor(FloorDecor, FloorDecorPlacementSmall,MinFloorDecorScale, MaxFloorDecorScale, Random.Range(MinFloorSmallCount, MaxFloorSmallCount), false);
+        //PlaceFloorDecor(WallDecor, WallDecorPlacement,MinWallDecorScale, MaxWallDecorScale, Random.Range (MinWallDecorCount, MaxWallDecorCount), true);
         }
     }
     
