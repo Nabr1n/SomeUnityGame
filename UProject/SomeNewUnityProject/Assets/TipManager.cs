@@ -18,17 +18,17 @@ public class TipManager : MonoBehaviour
     void Update()
     {
         if(Inventory.TipsInventory.Count < Tips.Count){
+            Debug.Log("DESTROY ALL");
             List<GameObject> ObjectsToDelete = new List<GameObject>();
-            for (int i = 0; i < Tips.Count; i++)
+            ObjectsToDelete = Tips;
+            Debug.Log(ObjectsToDelete.Count);
+            for (int i = ObjectsToDelete.Count-1; i >= 0; i--)
             {
-                if(i >= Inventory.TipsInventory.Count) ObjectsToDelete.Add(Tips[i]);
-            }
-            for (int i = ObjectsToDelete.Count-1; i < 0; i--)
-            {
-                Destroy(ObjectsToDelete[i].gameObject);
                 Debug.Log("Destroy");
+                DestroyImmediate(ObjectsToDelete[i].gameObject);
+                
             }
-            Tips.Clear();
+            //Tips.Clear();
         }
         Debug.Log(Tips.Count);
         if (Inventory.TipsInventory.Count > Tips.Count){
