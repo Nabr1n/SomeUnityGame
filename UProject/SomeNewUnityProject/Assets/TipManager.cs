@@ -28,7 +28,7 @@ public class TipManager : MonoBehaviour
                 DestroyImmediate(ObjectsToDelete[i].gameObject);
                 
             }
-            //Tips.Clear();
+            Tips.Clear();
         }
         Debug.Log(Tips.Count);
         if (Inventory.TipsInventory.Count > Tips.Count){
