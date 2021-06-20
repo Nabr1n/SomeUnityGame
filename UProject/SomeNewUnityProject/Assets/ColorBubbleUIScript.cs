@@ -12,6 +12,8 @@ public class ColorBubbleUIScript : MonoBehaviour
 
     [SerializeField] private BlobObject myBlob;
     [SerializeField] private Image myImage;
+    [SerializeField] private Animator myAnimator;
+    
 
 
     private void Start() {
@@ -28,13 +30,17 @@ public class ColorBubbleUIScript : MonoBehaviour
                 if(InventoryRef.Inventory[i].Object.MyColorName == myBlob.MyColorName && InventoryRef.Inventory[i].Count > 0){
                     //Debug.Log("found");
                     found = true;
+                    myAnimator.enabled = true;
                     //Debug.Log( myBlob.MyColorName + "Exists");
                     myImage.enabled = true;
                     myImage.color = myBlob.MyColor;
                     break;
                     
                 }
-                else myImage.enabled = false;
+                else {
+                    myImage.enabled = false;
+                    myAnimator.enabled = false;
+                }
             }
         }
         

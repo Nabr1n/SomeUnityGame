@@ -923,7 +923,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &668679516
 GameObject:
@@ -2401,7 +2401,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7a967ed7e3d4ced46b374e928057fbe2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a967ed7e3d4ced46b374e928057fbe2,
         type: 3}
@@ -3661,17 +3661,17 @@ PrefabInstance:
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: Inventory.Array.data[0].Count
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: Inventory.Array.data[1].Count
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
       propertyPath: Inventory.Array.data[2].Count
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5033357862206116804, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
@@ -3813,6 +3813,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5937643074875312213, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: m_ShowToolkit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5937643074875312213, guid: 58a269a3870443f4abaa16292ffcfdca,
+        type: 3}
+      propertyPath: m_ShowCustomSorter
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5937643074875312213, guid: 58a269a3870443f4abaa16292ffcfdca,
         type: 3}
