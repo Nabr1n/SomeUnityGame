@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13db652acec6b54ba7ee90e12c0df91, type: 3}
   m_Name: Blue2
   m_EditorClassIdentifier: 
-  MyTip: "\u0421\u0418\u041D\u0418\u04192"
+  MyTip: "\u041D\u0435\u0442 \u043D\u0438\u0447\u0435\u0433\u043E \u0441\u0442\u0440\u0430\u0448\u043D\u0435\u0435
+    \u0438 \u043F\u0440\u0435\u043A\u0440\u0430\u0441\u043D\u0435\u0435 \u043F\u0435\u0441\u0435\u043D
+    \u0441\u0438\u043D\u0438\u0445 \u043A\u0438\u0442\u043E\u0432, \u0432\u043E\u0432\u0440\u0430\u0449\u0430\u044E\u0449\u0438\u0445\u0441\u044F
+    \u0434\u043E\u043C\u043E\u0439 \u043F\u043E\u0441\u043B\u0435 \u0441\u0443\u0440\u043E\u0432\u043E\u0439
+    \u0437\u0438\u043C\u044B"
   ColorString: Blue
   MyColor: {r: 0, g: 0, b: 1, a: 1}
   myTexture: {fileID: 8400000, guid: 904ee56a1f0720842a0144e6648fb204, type: 2}

@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13db652acec6b54ba7ee90e12c0df91, type: 3}
   m_Name: Yellow2
   m_EditorClassIdentifier: 
-  MyTip: "\u0416\u041E\u041E\u041B\u0422\u042B\u0419"
+  MyTip: "\u041D\u0435\u0434\u0430\u0432\u043D\u043E \u044F \u043F\u043E\u0439\u043C\u0430\u043B
+    \u043A\u0440\u0430\u0431\u0430-\u043F\u0440\u0438\u0437\u0440\u0430\u043A\u0430!
+    \u042D\u0442\u043E\u0442 \u0437\u043E\u043B\u043E\u0442\u0438\u0441\u0442\u044B\u0439
+    \u043C\u0430\u043B\u044B\u0448 \u0431\u044B\u0441\u0442\u0440, \u043D\u043E \u044F
+    \u0431\u044B\u0441\u0442\u0440\u0435\u0435."
   ColorString: Yellow
   MyColor: {r: 1, g: 1, b: 0, a: 1}
   myTexture: {fileID: 8400000, guid: 8d236d4ffb192294d83d67a12bf3926d, type: 2}
