@@ -6,7 +6,7 @@ public class TipManager : MonoBehaviour
 {
     private GameObject Player;
     private ColorBubbleInventory Inventory;
-    private List<GameObject> Tips = new List<GameObject>();
+    public List<GameObject> Tips = new List<GameObject>();
     [SerializeField] private GameObject TipPrefab;
     void Start()
     {
@@ -25,10 +25,12 @@ public class TipManager : MonoBehaviour
             }
             for (int i = ObjectsToDelete.Count-1; i < 0; i--)
             {
-                Destroy(ObjectsToDelete[i]);
+                Destroy(ObjectsToDelete[i].gameObject);
+                Debug.Log("Destroy");
             }
+            Tips.Clear();
         }
-
+        Debug.Log(Tips.Count);
         if (Inventory.TipsInventory.Count > Tips.Count){
             for (int i = 0; i < Inventory.TipsInventory.Count; i++)
             {

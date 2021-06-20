@@ -103,6 +103,7 @@ public class SanctuaryGenerator : MonoBehaviour
             other.gameObject.transform.position = playertransformtomove.position+ new Vector3(0, 0.5f, 0);
             other.gameObject.GetComponent<PlayerMovement>().enabled = false;
             other.gameObject.transform.parent = ObjectToMoveWithPlayer.transform;
+            GameObject.FindWithTag("Player").GetComponent<ColorBubbleInventory>().TipsInventory.Clear();
             myAnimation.Play();
            
         }

@@ -107,6 +107,12 @@ public class MazeSpawner : MonoBehaviour
             GameObject2.GetComponent<FloorScript>().floortransform.SetActive(false);
             GameObject3.GetComponent<FloorScript>().floortransform.SetActive(false);
             newMazeStartingPoint = curentFloorCenterPos;
+            GameObject1.GetComponent<FloorScript>().AmIInClosedSanctuary = true;
+            GameObject2.GetComponent<FloorScript>().AmIInClosedSanctuary = true;
+            GameObject3.GetComponent<FloorScript>().AmIInClosedSanctuary = true;
+            GameObject1.GetComponent<FloorScript>().OnMyStart();
+            GameObject2.GetComponent<FloorScript>().OnMyStart();
+            GameObject3.GetComponent<FloorScript>().OnMyStart();
         }
         
         newMazeStartingPoint -= new Vector3 (0, 10f*CellSize, 0);

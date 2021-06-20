@@ -358,17 +358,19 @@ MonoBehaviour:
   MaxRockCount: 7
   MinRockCount: 0
   MinFloorBigCount: 0
-  MaxFloorBigCount: 0
-  MinFloorSmallCount: 0
-  MaxFloorSmallCount: 0
+  MaxFloorBigCount: 2
+  MinFloorSmallCount: 1
+  MaxFloorSmallCount: 5
+  MinWallDecorCount: 0
+  MaxWallDecorCount: 0
   MinRocksScale: 0.1
   MaxRockScale: 0.35
-  MinWallDecorScale: 0
-  MaxWallDecorScale: 0
-  MinFloorDecorScale: 0
-  MaxFloorDecorScale: 0
-  MinFloorDecorBigScale: 0
-  MaxFloorDecorBigScale: 0
+  MinWallDecorScale: 0.4
+  MaxWallDecorScale: 0.44
+  MinFloorDecorScale: 0.39
+  MaxFloorDecorScale: 0.96
+  MinFloorDecorBigScale: 0.35
+  MaxFloorDecorBigScale: 0.74
   Celling: {fileID: 8918579889320049517}
   WallLeft: {fileID: 4138420923093183093}
   LeftWallTransform: {fileID: 0}
@@ -390,6 +392,7 @@ MonoBehaviour:
   - {fileID: 2456058778141610782}
   - {fileID: 989832872316645834}
   - {fileID: 8801593867047475730}
+  WallDecorPlacement: []
   Floors:
   - {fileID: 919132149155446097, guid: afbc7f111efd9f24aacbd690efd6c935, type: 3}
   - {fileID: 919132149155446097, guid: 802fcfb80fe3a2e46b299485f1376095, type: 3}

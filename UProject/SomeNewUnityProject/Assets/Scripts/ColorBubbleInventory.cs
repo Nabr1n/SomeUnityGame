@@ -207,7 +207,7 @@ public class ColorBubbleInventory : MonoBehaviour
     private void UseBlob(string Side){
 
         SantuaryKeyHolder myKeyHolder;
-
+        if(currentCenteredGameObject != null){
         if(currentCenteredGameObject.TryGetComponent<SantuaryKeyHolder>(out myKeyHolder)){
         CheckSpheresColor();
         
@@ -233,6 +233,7 @@ public class ColorBubbleInventory : MonoBehaviour
             LMBcurrent = 0;
             RMBcurrent = 0;
         break;
+        }
         }
         }
         else{
