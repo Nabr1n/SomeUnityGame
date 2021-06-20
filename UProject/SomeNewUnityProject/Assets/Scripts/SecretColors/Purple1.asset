@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c13db652acec6b54ba7ee90e12c0df91, type: 3}
   m_Name: Purple1
   m_EditorClassIdentifier: Assembly-CSharp::SecretColor
-  MyTip: "\u0424\u0418\u0410\u041B\u0415\u0422\u0410\u0412\u042B\u0419"
+  MyTip: "\u041F\u0435\u0440\u043B\u0430\u043C\u0443\u0442\u0440 \u0411\u043B\u0430\u0433\u043E\u0440\u043E\u0434\u043D\u043E\u0439
+    \u041F\u0438\u043D\u043D\u044B \u043E\u0442\u043B\u0438\u0432\u0430\u0435\u0442
+    \u043F\u0443\u0440\u043F\u0443\u0440\u043E\u043C \u043D\u0430 \u0441\u043E\u043B\u043D\u0446\u0435,
+    \u0438 \u043E\u0442 \u0442\u043E\u0433\u043E \u043E\u043D \u0441\u0442\u043E\u043B\u044C
+    \u0446\u0435\u043D\u0435\u043D"
   ColorString: Purple
   MyColor: {r: 1, g: 0, b: 1, a: 1}
   myTexture: {fileID: 8400000, guid: 8cc7c2bb515e08a4cbc8f87eea0ca1b4, type: 2}
