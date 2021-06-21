@@ -351,9 +351,11 @@ public class ColorBubbleInventory : MonoBehaviour
 
 
      private void CheckSpheresColor(){
-        BlobObject LeftBlob, RightBlob = null;
-        LeftBlob = Inventory[leftArmObj].Object;
-        RightBlob = Inventory[RightArmObj].Object;
+        BlobObject LeftBlob = null, RightBlob = null;
+        if(leftArmObj!=-1) LeftBlob = Inventory[leftArmObj].Object;
+        if (RightArmObj!=-1) RightBlob = Inventory[RightArmObj].Object;
+        // LeftBlob = Inventory[leftArmObj].Object;
+        // RightBlob = Inventory[RightArmObj].Object;
         
 
 
